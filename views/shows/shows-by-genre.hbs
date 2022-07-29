@@ -1,1 +1,16 @@
-<h1>Estas son las series por genero</h1>
+
+<h1>Estas son las series por género</h1>
+<div id="shows-by-genre">
+{{#each genre}}
+<div id="each-show-by-genre">
+<a href="/shows/{{this.id}}/details">
+      <img
+        src="https://image.tmdb.org/t/p/original/{{this.poster_path}}"
+        alt=""
+        width="200px"
+      />
+    </a>
+   <p>{{this.name}}</p>
+</div>
+{{/each}}
+</div>
