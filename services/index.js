@@ -15,9 +15,14 @@ const getGenreList = (genreId) => {
     return service.get(`/3/discover/tv?api_key=${process.env.API_KEY}&with_genres=${genreId}&page=1`)
 }
 
+const getActors = (showId) => {
+    return service.get (`3/tv/${showId}/credits?api_key=${process.env.API_KEY}&language=en-US
+    `)
+}
 
 module.exports = {
     getPopularShowsService,
     getDetailsShowsService,
-    getGenreList
+    getGenreList,
+    getActors
 }   

@@ -1,10 +1,34 @@
-<h2>DETALLES TEST</h2>
 
-<h2>{{arrData.name}}</h2>
-<img src="https://image.tmdb.org/t/p/original/{{arrData.poster_path}}" alt="{{arrData.name}}" width="200px">
-<h3>{{arrData.tagline}}</h3>
-<p>{{arrData.overview}}</p>
+<div id="show-details">
+    <div id="img-and-btn">
+        <h2>{{arrData.name}}</h2>
+        <img
+        src="https://image.tmdb.org/t/p/original/{{arrData.poster_path}}"
+        alt="{{arrData.name}}"
+        width="200px"
+        />
+        <br>
+        <form action="/shows/{{arrData.id}}/details" method="POST">
+            <button>ADD FAV</button>
+        </form>
+    </div>
+    <div id="other-details">
+        <h3>{{arrData.tagline}}</h3>
+        <p>{{arrData.overview}}</p>
 
-<form action="/shows/{{arrData.id}}/details" method="POST">
-<button>ADD FAV</button>
-</form>
+        <p>Cast:</p>
+        <div id="cast">
+            {{#each actors}}
+            <div id="each-actor">
+                    <a href="/cast/{{this.id}}/details">
+                    <img
+                    src="https://image.tmdb.org/t/p/original/{{this.profile_path}}"
+                    alt="cast-picture"
+                    width="100px"
+                    />
+                    <p>{{this.name}}</p>
+            </div>   
+            {{/each}}
+        </div>
+    </div>
+</div>
