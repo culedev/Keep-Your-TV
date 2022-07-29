@@ -5,6 +5,7 @@ const {
   getPopularShowsService,
   getDetailsShowsService,
   getGenreList,
+  getActors
 } = require("../services");
 
 // GET "/shows" Homepage popular shows
@@ -22,8 +23,10 @@ router.get("/:apiId/details", async (req, res, next) => {
   try {
     const showDetails = await getDetailsShowsService(apiId);
     const arrData = showDetails.data;
+    const actors = await getActors(apiId);
+    //console.log(actors.data.cast.slice(0,3))
     res.render("shows/details.hbs", {
-      arrData,
+      arrData, actors: actors.data.cast.slice(0,5)
     });
   } catch (err) {
     next(err);
