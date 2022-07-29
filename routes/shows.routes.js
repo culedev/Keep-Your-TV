@@ -55,11 +55,6 @@ router.get("/genre/:genreId", async (req, res, next) => {
   const { genreId } = req.params;
 
   const genre = await getGenreList(genreId);
-<<<<<<< HEAD
-  console.log(genre.data.results);
-=======
-  //console.log (genre.data.results)
->>>>>>> b1e9343ea60fdb4a7516975fd9c11b7a390da5df
   res.render("shows/shows-by-genre.hbs", { genre: genre.data.results });
 });
 
