@@ -18,7 +18,7 @@ router.get("/", async (req, res, next) => {
 // GET "/shows/:apiId/details"
 router.get("/:apiId/details", async (req, res, next) => {
   const { apiId } = req.params;
-
+  console.log(req.session.user)
   try {
     const showDetails = await getDetailsShowsService(apiId);
     const arrData = showDetails.data;
@@ -33,15 +33,17 @@ router.get("/:apiId/details", async (req, res, next) => {
 // POST "/shows/:apId/details" tomar datos y almacenar en DB
 router.post("/:apiId/details", async (req, res, next) => {
   const { apiId } = req.params;
-
+    
   try {
     const showDetails = await getDetailsShowsService(apiId);
     const arrData = showDetails.data;
+
     await Show.create({
         apiId: arrData.id,
         name: arrData.name,
         img: arrData.poster_path,
         isFav: true,
+        user: req.session.user._id
     })
     res.redirect("/shows")
 
@@ -49,6 +51,8 @@ router.post("/:apiId/details", async (req, res, next) => {
     next(err);
   }
 });
+
+
 
 // GET LIST BY GENRE "/shows/genre/:genreId"
 router.get("/genre/:genreId", async (req, res, next) => {

@@ -1,53 +1,108 @@
-{{!-- 
+{{! 
   <a href="/">Home</a>
   
   <a href="/auth/signup">Sign up</a>
-  <a href="/auth/login">Log in</a> --}}
-
+  <a href="/auth/login">Log in</a> }}
 
 <nav class="navbar navbar-expand-lg bg-light">
   <div class="container-fluid">
     <a class="navbar-brand" href="/shows">Home</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
       <span class="navbar-toggler-icon"></span>
     </button>
-     <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          <a
+            class="nav-link dropdown-toggle"
+            href=""
+            role="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
             TV Shows
           </a>
           <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="/shows/genre/10759">Action & Adventure</a></li>
-            <li><a class="dropdown-item" href="/shows/genre/16">Animation</a></li>
+            <li><a class="dropdown-item" href="/shows/genre/10759">Action &
+                Adventure</a></li>
+            <li><a
+                class="dropdown-item"
+                href="/shows/genre/16"
+              >Animation</a></li>
             <li><a class="dropdown-item" href="/shows/genre/35">Comedy</a></li>
             <li><a class="dropdown-item" href="/shows/genre/80">Crime</a></li>
-            <li><a class="dropdown-item" href="/shows/genre/99">Documentary</a></li>
+            <li><a
+                class="dropdown-item"
+                href="/shows/genre/99"
+              >Documentary</a></li>
             <li><a class="dropdown-item" href="/shows/genre/18">Drama</a></li>
-            <li><a class="dropdown-item" href="/shows/genre/10751">Family</a></li>
+            <li><a
+                class="dropdown-item"
+                href="/shows/genre/10751"
+              >Family</a></li>
             <li><a class="dropdown-item" href="/shows/genre/10762">Kids</a></li>
-            <li><a class="dropdown-item" href="/shows/genre/9648">Mystery</a></li>
+            <li><a
+                class="dropdown-item"
+                href="/shows/genre/9648"
+              >Mystery</a></li>
             <li><a class="dropdown-item" href="/shows/genre/10763">News</a></li>
-            <li><a class="dropdown-item" href="/shows/genre/10764">Reality</a></li>
-            <li><a class="dropdown-item" href="/shows/genre/10765">Sci-Fi & Fantasy</a></li>
+            <li><a
+                class="dropdown-item"
+                href="/shows/genre/10764"
+              >Reality</a></li>
+            <li><a class="dropdown-item" href="/shows/genre/10765">Sci-Fi &
+                Fantasy</a></li>
             <li><a class="dropdown-item" href="/shows/genre/10766">Soap</a></li>
             <li><a class="dropdown-item" href="/shows/genre/10767">Talk</a></li>
-            <li><a class="dropdown-item" href="/shows/genre/10768">War & Politics</a></li>
+            <li><a class="dropdown-item" href="/shows/genre/10768">War &
+                Politics</a></li>
             <li><a class="dropdown-item" href="/shows/genre/37">Western</a></li>
           </ul>
         </li>
       </ul>
       <form class="d-flex" role="search">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+        <input
+          class="form-control me-2"
+          type="search"
+          placeholder="Search"
+          aria-label="Search"
+        />
         <button class="btn btn-outline-success" type="submit">Search</button>
       </form>
-
-
-        
+      {{#if isUserActive}}
+       <ul class="navbar-nav d-flex">
+        <li class="nav-item dropdown">
+          <a
+            class="nav-link dropdown-toggle"
+            href=""
+            role="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+          <img
+            src="/images/defaultuser.jpg"
+            width="40"
+            height="40"
+            class="rounded-circle"
+          />
+        </a>
+       <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="#">My profile</a></li>
+            <li><a class="dropdown-item" href="#">My lists</a></li>
+            <li><a class="dropdown-item" href="/auth/logout">Log out</a></li>
+      </ul>
+      {{else}}
         <a href="/auth/signup"><button class="btn btn-outline-success">Sign up</button></a>
-        
-       <a href="/auth/login"><button class="btn btn-outline-success">Log in</button></a>
-  
+        <a href="/auth/login"><button class="btn btn-outline-success">Log in</button></a>
+      {{/if}}
     </div>
   </div>
 </nav>
