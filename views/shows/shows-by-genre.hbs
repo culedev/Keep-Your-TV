@@ -1,8 +1,8 @@
-
 <h1>Estas son las series por género</h1>
 <div id="shows-by-genre">
 {{#each genre}}
 <div id="each-show-by-genre">
+    <div id="genre-img">
 <a href="/shows/{{this.id}}/details">
       <img
         src="https://image.tmdb.org/t/p/original/{{this.poster_path}}"
@@ -10,7 +10,12 @@
         width="200px"
       />
     </a>
-   <p>{{this.name}}</p>
+    </div>
+    <div id="genre-data">
+   <p>Name:{{this.name}}</p>
+   <p>Description:{{this.overview}}</p>
+   <p>Average rate: {{this.vote_average}}</p>
+   </div>
 </div>
 {{/each}}
 </div>
