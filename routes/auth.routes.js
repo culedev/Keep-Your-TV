@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const User = require("../../models/User.model");
+const User = require("../models/User.model");
 const bcrypt = require("bcryptjs");
 
 // GET "/auth/signup"
