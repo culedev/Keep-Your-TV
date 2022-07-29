@@ -13,8 +13,8 @@ const showSchema = new Schema(
         type: Schema.Types.ObjectId, // Esto sera un ID que apunta a otro documento de la DB
         ref: "User", 
     },
-    nameSerie: String,
-    imgSerie: String,
+    name: String,
+    img: String,
   },
   {
     // this second object adds extra properties: `createdAt` and `updatedAt`

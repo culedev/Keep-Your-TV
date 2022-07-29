@@ -1,13 +1,29 @@
 const router = require("express").Router();
-const {getPopularSeriesService} = require("../services")
+const {getPopularShowsService, getDetailsShowsService} = require("../services")
 
-
+// GET "/shows" Homepage popular shows 
 router.get("/", async (req, res, next) => {
 
-    const test = await getPopularSeriesService()
+    const popularShow = await getPopularShowsService()
     
-    const arrData = test.data.results
+    const arrData = popularShow.data.results
     res.render("shows/home.hbs", {arrData})
+})
+
+// GET "/shows/:apiId/details"
+router.get("/:apiId/details", async (req, res, next) => {
+    const {apiId} = req.params
+
+    try {
+    const showDetails = await getDetailsShowsService(apiId)
+    const arrData = showDetails.data
+    res.render("shows/details.hbs", {
+        arrData,
+    })    
+    } catch (err) {
+        next(err)
+    }
+
 })
 
 
