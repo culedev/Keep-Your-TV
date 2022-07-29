@@ -1,10 +1,8 @@
-
-
 const router = require("express").Router();
-const {getPopularSeriesService  } = require("../services")
+const {getPopularSeriesService} = require("../services")
 
 
-router.get("/home", async (req, res, next) => {
+router.get("/", async (req, res, next) => {
 
     const test = await getPopularSeriesService()
     

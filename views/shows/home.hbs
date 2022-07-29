@@ -1,11 +1,20 @@
-<h2>testing</h2>
+<h2>Keep Your TV</h2>
 
-{{#each arrData}}
+<div id="news">
 
+</div>
 
-<img src="https://image.tmdb.org/t/p/original/{{this.poster_path}}" alt="" width="200px">
-<p>{{this.name}}</p>
+<div id="popular">
 
+  {{#each arrData}}
 
+    <img
+      src="https://image.tmdb.org/t/p/original/{{this.poster_path}}"
+      alt=""
+      width="200px"
+    />
+    <p>{{this.name}}</p>
 
-{{/each}}
+  {{/each}}
+  
+</div>
