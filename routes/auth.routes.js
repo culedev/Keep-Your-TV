@@ -107,7 +107,7 @@ router.post("/login", async (req, res, next) => {
       };
 
       req.session.save(() => {
-        res.redirect("/")
+        res.redirect("/shows")
       })
     
   } catch (err) {
