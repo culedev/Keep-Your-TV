@@ -4,3 +4,7 @@
 <img src="https://image.tmdb.org/t/p/original/{{arrData.poster_path}}" alt="{{arrData.name}}" width="200px">
 <h3>{{arrData.tagline}}</h3>
 <p>{{arrData.overview}}</p>
+
+<form action="/shows/{{arrData.id}}/details" method="POST">
+<button>ADD FAV</button>
+</form>

@@ -7,6 +7,7 @@ const showSchema = new Schema(
     status: {
         type: String,
         enum: ["pending", "watching", "watched", "nostatus"],
+        default: "nostatus",
     },
     isFav: Boolean,
     user: {

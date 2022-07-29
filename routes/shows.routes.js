@@ -1,4 +1,5 @@
 const router = require("express").Router();
+const Show = require("../models/Shows.model")
 
 const {
   getPopularShowsService,
@@ -29,12 +30,32 @@ router.get("/:apiId/details", async (req, res, next) => {
   }
 });
 
+// POST "/shows/:apId/details" tomar datos y almacenar en DB
+router.post("/:apiId/details", async (req, res, next) => {
+  const { apiId } = req.params;
+
+  try {
+    const showDetails = await getDetailsShowsService(apiId);
+    const arrData = showDetails.data;
+    await Show.create({
+        apiId: arrData.id,
+        name: arrData.name,
+        img: arrData.poster_path,
+        isFav: true,
+    })
+    res.redirect("/shows")
+
+  } catch (err) {
+    next(err);
+  }
+});
+
 // GET LIST BY GENRE "/shows/genre/:genreId"
 router.get("/genre/:genreId", async (req, res, next) => {
   const { genreId } = req.params;
 
   const genre = await getGenreList(genreId);
-  console.log (genre.data.results)
+  console.log(genre.data.results);
   res.render("shows/shows-by-genre.hbs", { genre: genre.data.results });
 });
 
