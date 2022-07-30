@@ -19,12 +19,11 @@ router.get("/", async (req, res, next) => {
 // GET "/shows/:apiId/details"
 router.get("/:apiId/details", async (req, res, next) => {
   const { apiId } = req.params;
-  console.log(req.session.user)
   try {
     const showDetails = await getDetailsShowsService(apiId);
     const arrData = showDetails.data;
     const actors = await getActors(apiId);
-    //console.log(actors.data.cast.slice(0,3))
+
     res.render("shows/details.hbs", {
       arrData, actors: actors.data.cast.slice(0,5)
     });
@@ -33,13 +32,18 @@ router.get("/:apiId/details", async (req, res, next) => {
   }
 });
 
-// POST "/shows/:apId/details" tomar datos y almacenar en DB
-router.post("/:apiId/details", async (req, res, next) => {
-  const { apiId } = req.params;
+// POST "/shows/:apId/details" tomar datos y almacenar en DB BOTON FAVORITO
+router.post("/:showId/details", async (req, res, next) => {
+  const { showId } = req.params;
     
   try {
-    const showDetails = await getDetailsShowsService(apiId);
+    const showDetails = await getDetailsShowsService(showId);
     const arrData = showDetails.data;
+
+    const isfavquestionmark = await Show.find({apiId: showId})
+    console.log("AQUI TONTO", isfavquestionmark)
+
+    //!ACAAAAAAABALOOOOOOOOOOOOOOOOO
 
     await Show.create({
         apiId: arrData.id,
