@@ -6,18 +6,23 @@
       width="200px"
     />
     <br />
+
     <form action="/shows/{{arrData.id}}/details" method="POST">
-      <button>ADD FAV</button>
+      <input id="heart" name="favChecked" type="checkbox" {{#if currentShow.isFav}}checked{{/if}} onChange="this.form.submit()"/>
+      <label for="heart">❤</label>      
     </form>
+
     <form action="/shows/{{arrData.id}}/details" method="POST">
-      <select name="status">
-        <option value="pending">Pending</option>
-        <option value="watching">Watching</option>
-        <option value="watched">Watched</option>
-        <option value="nostatus">Delete</option>
-      </select>
+        <select name="status" >
+            <option value="nostatus" {{#if (isSelected "nostatus" currentShow.status)}}selected{{/if}}>No list</option>
+            <option value="pending" {{#if (isSelected "pending" currentShow.status)}}selected{{/if}}>Pending</option>
+            <option value="watching" {{#if (isSelected "watching" currentShow.status)}}selected{{/if}}>Watching</option>
+            <option value="watched" {{#if (isSelected "watched" currentShow.status)}}selected{{/if}}>Watched</option>
+        </select>
       <button>Add to list</button>
     </form>
+    <h4>{{error}}</h4>
+
 
   </div>
   <div id="other-details">
