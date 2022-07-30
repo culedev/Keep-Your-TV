@@ -65,4 +65,5 @@ router.get("/genre/:genreId", async (req, res, next) => {
   res.render("shows/shows-by-genre.hbs", { genre: genre.data.results });
 });
 
+
 module.exports = router;

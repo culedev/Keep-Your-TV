@@ -1,0 +1,20 @@
+<h1>{{actorDetails.name}}</h1>
+<img
+  src="https://image.tmdb.org/t/p/original/{{actorDetails.profile_path}}"
+  alt="{{actorDetails.name}}"
+  width="200px"
+/>
+<p>{{actorDetails.biography}}</p>
+
+{{#each actorShows}}
+
+<p><a href="/shows/{{this.id}}/details"><img
+        src="https://image.tmdb.org/t/p/original/{{this.poster_path}}"
+        alt="{{this.name}}"
+        width="100"
+        /></a></p>
+        
+    <p>
+      {{this.name}}
+    </p>
+{{/each}}

@@ -15,4 +15,7 @@ router.use("/auth", authRoutes);
 const showsRoutes = require("./shows.routes.js");
 router.use("/shows", showsRoutes);
 
+const castRoutes = require("./cast.routes.js");
+router.use("/cast", castRoutes);
+
 module.exports = router;

@@ -1,23 +1,23 @@
 <h1>Estas son las series por género</h1>
 <div id="shows-by-genre">
 {{#each genre}}
-<div id="each-show-by-genre">
-    <div id="genre-img">
-<a href="/shows/{{this.id}}/details">
-      <img
+    <div id="each-show-by-genre">
+        <a class="link" href="/shows/{{this.id}}/details">
+        <img
         src="https://image.tmdb.org/t/p/original/{{this.poster_path}}"
         alt=""
         width="200px"
-      />
-    </a>
+        />
+        </a>
+        <div id="genre-data">
+            <a class="link" href="/shows/{{this.id}}/details">
+            <h3 id="title">{{this.name}}</h3>
+            <p>{{this.overview}}</p>
+            <p>Genre: </p>
+            <p>Average rate: {{this.vote_average}}</p>
+            </a>
+        </div>
+        
     </div>
-    <div id="genre-data">
-   <p>Name:{{this.name}}</p>
-   <p>Description:{{this.overview}}</p>
-   <p>Genre: </p>
-   <p>Average rate: {{this.vote_average}}</p>
-   
-   </div>
-</div>
 {{/each}}
 </div>
