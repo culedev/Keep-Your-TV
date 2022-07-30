@@ -17,6 +17,9 @@ router.get("/", (req, res, next) => {
 //Search results from all the urls in the app
 router.get("/shows-search", async (req, res, next) => {
   const {search} = req.query
+  if (!search) {
+    res.redirect ("/shows") 
+ }
   try {   
     const showFound = await searchShow (search)
     res.render ("shows/shows-search-results.hbs", {showFound: showFound.data.results})  

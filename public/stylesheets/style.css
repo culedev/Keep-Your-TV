@@ -121,16 +121,19 @@ a:active {
   font-weight: bold;
 }
 
-#favorites{
+.list{
   display:flex;
   flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
-#each-favorite{
+.each-list-show{
   display:flex;
   flex-direction: column;
   margin: 10px;
 }
+
 [id="heart"] {
   position: absolute;
   left: -100vw;

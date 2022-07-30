@@ -23,6 +23,7 @@ router.get("/:showId/details", async (req, res, next) => {
     const showDetails = await getDetailsShowsService(showId);
     const arrData = showDetails.data;
     const currentShow = await Show.findOne({ apiId: showId });
+    console.log(arrData)
     const actors = await getActors(showId);
 
     res.render("shows/details.hbs", {
