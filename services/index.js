@@ -39,6 +39,10 @@ const searchShow = (query) => {
   return service.get(`/3/search/tv?api_key=${process.env.API_KEY}&language=en-US&page=1&query=${query}&include_adult=false`);
 };
 
+const getGenreName = () => {
+  return service.get(`3/genre/tv/list?api_key=${process.env.API_KEY}&language=en-US`)
+}
+
 module.exports = {
   getPopularShowsService,
   getDetailsShowsService,
@@ -47,4 +51,5 @@ module.exports = {
   getActorDetails,
   getActorShows,
   searchShow,
+  getGenreName,
 };

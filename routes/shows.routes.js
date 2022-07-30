@@ -1,11 +1,13 @@
 const router = require("express").Router();
 const Show = require("../models/Shows.model");
+const {isLoggedIn} = require("../middleware/auth")
 
 const {
   getPopularShowsService,
   getDetailsShowsService,
   getGenreList,
   getActors,
+  getGenreName,
 } = require("../services");
 
 // GET "/shows" Homepage popular shows
@@ -37,7 +39,7 @@ router.get("/:showId/details", async (req, res, next) => {
 });
 
 // POST "/shows/:apId/details" tomar datos y almacenar en DB BOTON FAVORITO
-router.post("/:showId/details", async (req, res, next) => {
+router.post("/:showId/details", isLoggedIn, async (req, res, next) => {
   const { showId } = req.params;
   const { status, favChecked } = req.body;
 
@@ -72,9 +74,9 @@ router.post("/:showId/details", async (req, res, next) => {
     } 
     else {
       if (status) {
-        await Show.findByIdAndUpdate(currentShow._id, { status: status });
+        await Show.findByIdAndUpdate(currentShow._id, { status: status }).populate("user");
       } else {
-        await Show.findByIdAndUpdate(currentShow._id, { isFav: showFav });
+        await Show.findByIdAndUpdate(currentShow._id, { isFav: showFav }).populate("user");
       }     
     }
     
@@ -89,7 +91,14 @@ router.get("/genre/:genreId", async (req, res, next) => {
   const { genreId } = req.params;
 
   const genre = await getGenreList(genreId);
-  res.render("shows/shows-by-genre.hbs", { genre: genre.data.results });
+  const genreList = await getGenreName()
+  const currentGenre = genreList.data.genres.find(genreObj => genreObj.id === parseInt(genreId));
+
+  res.render("shows/shows-by-genre.hbs", { 
+    genre: genre.data.results,
+    genreName: currentGenre.name
+  });
+
 });
 
 module.exports = router;

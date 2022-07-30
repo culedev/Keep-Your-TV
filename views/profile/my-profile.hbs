@@ -1,1 +1,11 @@
 <h1>Mi perfil</h1>
+{{log user}}
+<h2>Hello, {{user.username}}</h2>
+
+<img src="{{user.image}}" alt="{{user.name}}">
+
+<form action="/profile/update" method="POST" enctype="multipart/form-data">
+  <label for="image"></label>
+  <input type="file" name="image">
+  <button>Agregar/Cambiar Imagen</button>
+</form>
