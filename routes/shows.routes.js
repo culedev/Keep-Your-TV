@@ -33,6 +33,8 @@ router.get("/:apiId/details", async (req, res, next) => {
   }
 });
 
+
+
 // POST "/shows/:apId/details" tomar datos y almacenar en DB
 router.post("/:apiId/details", async (req, res, next) => {
   const { apiId } = req.params;
