@@ -1,0 +1,71 @@
+<h1>My lists</h1>
+
+<h4>Favourites</h4>
+<div id="favorites">
+{{#each favShows}}
+<div id="each-favorite">
+ 
+     <a class="link" href="/shows/{{this.apiId}}/details">
+        <img
+        src="https://image.tmdb.org/t/p/original/{{this.img}}"
+        alt=""
+        width="150px"
+        height="220px"
+        />
+        </a>
+           <p>{{this.name}}</p>
+   </div>
+{{/each}}
+</div>
+<h4>Watching right now</h4>
+<div>
+{{#each watchingShows}}
+<div id="each-favorite">
+ 
+     <a class="link" href="/shows/{{this.apiId}}/details">
+        <img
+        src="https://image.tmdb.org/t/p/original/{{this.img}}"
+        alt=""
+        width="150px"
+        height="220px"
+        />
+        </a>
+           <p>{{this.name}}</p>
+   </div>
+{{/each}}
+</div>
+<div>
+<h4>What I want to watch</h4>
+{{#each pendingShows}}
+<div id="each-favorite">
+ 
+     <a class="link" href="/shows/{{this.apiId}}/details">
+        <img
+        src="https://image.tmdb.org/t/p/original/{{this.img}}"
+        alt=""
+        width="150px"
+        height="220px"
+        />
+        </a>
+           <p>{{this.name}}</p>
+   </div>
+{{/each}}
+</div>
+
+
+<h4>Already watched</h4>
+{{#each watchedShows}}
+<div id="each-favorite">
+ 
+     <a class="link" href="/shows/{{this.apiId}}/details">
+        <img
+        src="https://image.tmdb.org/t/p/original/{{this.img}}"
+        alt=""
+        width="150px"
+        height="220px"
+        />
+        </a>
+           <p>{{this.name}}</p>
+   </div>
+{{/each}}
+</div>

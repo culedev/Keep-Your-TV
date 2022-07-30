@@ -54,11 +54,6 @@ router.post("/:showId/details", async (req, res, next) => {
       });
       res.redirect(`/shows/${showId}/details`);
     }
-<<<<<<< HEAD
-
-=======
-    
->>>>>>> d7ef3bbf52c41eae0c82f4579d5549837d79a2b2
     if (isShowFav.isFav === true) {
       await Show.findByIdAndUpdate(isShowFav._id, {isFav: false})
       res.redirect(`/shows/${showId}/details`)
@@ -71,10 +66,7 @@ router.post("/:showId/details", async (req, res, next) => {
       return;
     }
 
-<<<<<<< HEAD
   
-=======
->>>>>>> d7ef3bbf52c41eae0c82f4579d5549837d79a2b2
     
   } catch (err) {
     next(err);

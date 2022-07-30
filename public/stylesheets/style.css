@@ -121,3 +121,13 @@ a:active {
   font-weight: bold;
 }
 
+#favorites{
+  display:flex;
+  flex-direction: row;
+}
+
+#each-favorite{
+  display:flex;
+  flex-direction: column;
+  margin: 10px;
+}

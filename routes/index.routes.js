@@ -19,7 +19,6 @@ router.get("/shows-search", async (req, res, next) => {
   const {search} = req.query
   try {   
     const showFound = await searchShow (search)
-    console.log(showFound.data)
     res.render ("shows/shows-search-results.hbs", {showFound: showFound.data.results})  
   } catch (err) {
     next(err);
@@ -34,5 +33,8 @@ router.use("/shows", showsRoutes);
 
 const castRoutes = require("./cast.routes.js");
 router.use("/cast", castRoutes);
+
+const profileRoutes = require("./profile.routes.js");
+router.use("/profile", profileRoutes);
 
 module.exports = router;
