@@ -1,36 +1,44 @@
-
 <div id="show-details">
-    <div id="img-and-btn">
-        <img
-        src="https://image.tmdb.org/t/p/original/{{arrData.poster_path}}"
-        alt="{{arrData.name}}"
-        width="200px"
-        />
-        <br>
-        <form action="/shows/{{arrData.id}}/details" method="POST">
-            <button>ADD FAV</button>
-        </form>
-        
-    </div>
-    <div id="other-details">
-        <h2>{{arrData.name}}</h2>
-        <h3>{{arrData.tagline}}</h3>
-        <p>{{arrData.overview}}</p>
+  <div id="img-and-btn">
+    <img
+      src="https://image.tmdb.org/t/p/original/{{arrData.poster_path}}"
+      alt="{{arrData.name}}"
+      width="200px"
+    />
+    <br />
+    <form action="/shows/{{arrData.id}}/details" method="POST">
+      <button>ADD FAV</button>
+    </form>
+    <form action="/shows/{{arrData.id}}/details" method="POST">
+      <select name="status">
+        <option value="pending">Pending</option>
+        <option value="watching">Watching</option>
+        <option value="watched">Watched</option>
+        <option value="nostatus">Delete</option>
+      </select>
+      <button>Add to list</button>
+    </form>
 
-        <p>Cast:</p>
-        <div id="cast">
-            {{#each actors}}
-            <div id="each-actor">
-                    <a href="/cast/{{this.id}}/details">
-                    <img
-                    src="https://image.tmdb.org/t/p/original/{{this.profile_path}}"
-                    alt="cast-picture"
-                    width="100px"
-                    />
-                    </a>
-                    <p>{{this.name}}</p>
-            </div>   
-            {{/each}}
+  </div>
+  <div id="other-details">
+    <h2>{{arrData.name}}</h2>
+    <h3>{{arrData.tagline}}</h3>
+    <p>{{arrData.overview}}</p>
+
+    <p>Cast:</p>
+    <div id="cast">
+      {{#each actors}}
+        <div id="each-actor">
+          <a href="/cast/{{this.id}}/details">
+            <img
+              src="https://image.tmdb.org/t/p/original/{{this.profile_path}}"
+              alt="cast-picture"
+              width="100px"
+            />
+          </a>
+          <p>{{this.name}}</p>
         </div>
+      {{/each}}
     </div>
+  </div>
 </div>
