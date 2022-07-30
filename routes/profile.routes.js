@@ -11,10 +11,11 @@ router.get("/", (req, res, next) => {
 //GET "/profile/lists" => show user's lists
 router.get("/lists", async (req, res, next) => {
     try{
-        const favShows=await Show.find({isFav:true})
-        const watchedShows=await Show.find({status:"watched"})
-        const pendingShows=await Show.find({status:"pending"})
-        const watchingShows=await Show.find({status:"watching"})
+        const favShows=await Show.find({$and: [{isFav:true}, {user:req.session.user._id}]})
+        const watchedShows=await Show.find({$and: [{status:"watched"},{user:req.session.user._id}]})
+        const pendingShows=await Show.find({$and: [{status:"pending"},{user:req.session.user._id}]})
+        const watchingShows=await Show.find({$and: [{status:"watching"},{user:req.session.user._id}]})
+  
 
         console.log(favShows)
         res.render("profile/lists.hbs",{favShows, watchedShows, pendingShows, watchingShows });

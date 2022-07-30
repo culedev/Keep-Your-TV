@@ -22,7 +22,7 @@ router.get("/:showId/details", async (req, res, next) => {
   try {
     const showDetails = await getDetailsShowsService(showId);
     const arrData = showDetails.data;
-    const currentShow = await Show.findOne({ apiId: showId });
+    const currentShow = await Show.findOne({$and: [{apiId:showId},{user:req.session.user._id}]});
     console.log(arrData)
     const actors = await getActors(showId);
 
@@ -44,15 +44,14 @@ router.post("/:showId/details", async (req, res, next) => {
   try {
     const showDetails = await getDetailsShowsService(showId);
     const arrData = showDetails.data;
-
-    const showExists = await Show.exists({ apiId: showId });
-    const currentShow = await Show.findOne({ apiId: showId });
+    //const showExists = await Show.exists({ apiId: showId });
+    const currentShow = await Show.findOne({$and: [{apiId:showId},{user:req.session.user._id}]});
     const showFav = favChecked === "on" ? true : false;
     const actors = await getActors(showId);
 
     // FAV CHECK
 
-    if (!showExists) {
+    if (!currentShow) {
       if (status && status === "nostatus") {
         res.render("shows/details.hbs", {
           arrData,
@@ -70,7 +69,8 @@ router.post("/:showId/details", async (req, res, next) => {
         status: status,
         user: req.session.user._id,
       });
-    } else {
+    } 
+    else {
       if (status) {
         await Show.findByIdAndUpdate(currentShow._id, { status: status });
       } else {

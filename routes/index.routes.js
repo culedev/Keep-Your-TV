@@ -38,6 +38,7 @@ const castRoutes = require("./cast.routes.js");
 router.use("/cast", castRoutes);
 
 const profileRoutes = require("./profile.routes.js");
+const User = require("../models/User.model");
 router.use("/profile", profileRoutes);
 
 module.exports = router;
