@@ -57,7 +57,7 @@ router.post("/:showId/details", async (req, res, next) => {
           arrData,
           currentShow,
           actors: actors.data.cast.slice(0, 5),
-          error: "METE UN STATUS COÑO",
+          error: "You have to select a valid status",
         });
         return;
       }
