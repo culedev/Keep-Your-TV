@@ -1,8 +1,8 @@
-<h1>Estas son las series por género</h1>
+<h2>Resultados de la busqueda</h2>
 <div class="shows">
-{{#each genre}}
-    <div class="each-show">
-        <a class="link" href="/shows/{{this.id}}/details">
+{{#each showFound}}
+<div class="each-show">
+<a class="link" href="/shows/{{this.id}}/details">
         <img
         src="https://image.tmdb.org/t/p/original/{{this.poster_path}}"
         alt=""
@@ -17,7 +17,6 @@
             <p>Average rate: {{this.vote_average}}</p>
             </a>
         </div>
-        
-    </div>
+</div>
 {{/each}}
 </div>
