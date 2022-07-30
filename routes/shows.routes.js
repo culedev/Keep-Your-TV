@@ -44,6 +44,17 @@ router.post("/:showId/details", async (req, res, next) => {
     const showExists = await Show.exists({ apiId: showId });
     const isShowFav = await Show.findOne({apiId: showId})
 
+    if(showExists === null) {
+      await Show.create({
+        apiId: arrData.id,
+        name: arrData.name,
+        img: arrData.poster_path,
+        isFav: true,
+        user: req.session.user._id,
+      });
+      res.redirect(`/shows/${showId}/details`);
+    }
+
     if (isShowFav.isFav === true) {
       await Show.findByIdAndUpdate(isShowFav._id, {isFav: false})
       res.redirect(`/shows/${showId}/details`)
@@ -56,16 +67,7 @@ router.post("/:showId/details", async (req, res, next) => {
       return;
     }
 
-    if(showExists === null) {
-      await Show.create({
-        apiId: arrData.id,
-        name: arrData.name,
-        img: arrData.poster_path,
-        isFav: true,
-        user: req.session.user._id,
-      });
-      res.redirect(`/shows/${showId}/details`);
-    }
+  
     
   } catch (err) {
     next(err);
