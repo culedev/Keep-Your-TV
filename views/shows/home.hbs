@@ -28,13 +28,16 @@
 >
   <div class="carousel-inner">
        {{#each arrData}}
+       
        <div class="item {{#if @first }}active {{/if}}">
          <div class="carousel-item {{#if @first }}active {{/if}}">
+         <a href="/shows/{{this.id}}/details">                 
             <img
               src="https://image.tmdb.org/t/p/original/{{this.poster_path}}"
               alt=""
               width="200px"
             />
+            </a>
          </div>
        </div>
        {{/each}}      

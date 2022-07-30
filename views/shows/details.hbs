@@ -1,7 +1,6 @@
 
 <div id="show-details">
     <div id="img-and-btn">
-        <h2>{{arrData.name}}</h2>
         <img
         src="https://image.tmdb.org/t/p/original/{{arrData.poster_path}}"
         alt="{{arrData.name}}"
@@ -14,6 +13,7 @@
         
     </div>
     <div id="other-details">
+        <h2>{{arrData.name}}</h2>
         <h3>{{arrData.tagline}}</h3>
         <p>{{arrData.overview}}</p>
 
@@ -27,6 +27,7 @@
                     alt="cast-picture"
                     width="100px"
                     />
+                    </a>
                     <p>{{this.name}}</p>
             </div>   
             {{/each}}

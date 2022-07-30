@@ -36,6 +36,7 @@ body {
   position: relative;
   left: 10%;
 }
+
 nav {
   width: 80%;
 }
@@ -70,6 +71,15 @@ h1 {
   border-radius: 0px 15px 15px 0px;
   height: 200px;
   box-shadow: 3px 3px 10px 4px rgba(0, 0, 0, 0.2);
+  padding-left: 20px;
+}
+
+a:link,
+a:visited,
+a:hover,
+a:active {
+  color: #000000;
+  text-decoration: none;
 }
 
 #each-show-by-genre img {
@@ -87,7 +97,7 @@ h1 {
 #each-actor {
   display: flex;
   flex-direction: column;
-  margin: 5px;
+  margin-right: 20px;
 }
 
 #img-and-btn {
@@ -96,11 +106,17 @@ h1 {
 }
 
 #show-details {
-  display:flex;
+  display: flex;
   flex-direction: row;
+  margin-top: 15px;
 }
 
-#other-details{
-  display:flex;
+#other-details {
+  display: flex;
   flex-direction: column;
+  margin:10px;
+}
+
+#title-small {
+  font-weight: bold;
 }
