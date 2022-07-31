@@ -6,7 +6,7 @@
       width="200px"
     />
     <br />
-
+ {{#if isUserActive}}
     <form action="/shows/{{arrData.id}}/details" method="POST">
       <input id="heart" name="favChecked" type="checkbox" {{#if currentShow.isFav}}checked{{/if}} onChange="this.form.submit()"/>
       <label for="heart">❤</label>      
@@ -21,6 +21,7 @@
         </select>
       <button>Add to list</button>
     </form>
+    {{/if}}
     <h4>{{error}}</h4>
 
 

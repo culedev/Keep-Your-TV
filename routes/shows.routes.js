@@ -1,6 +1,6 @@
 const router = require("express").Router();
 const Show = require("../models/Shows.model");
-const {isLoggedIn} = require("../middleware/auth")
+const { isLoggedIn } = require("../middleware/auth");
 
 const {
   getPopularShowsService,
@@ -24,15 +24,27 @@ router.get("/:showId/details", async (req, res, next) => {
   try {
     const showDetails = await getDetailsShowsService(showId);
     const arrData = showDetails.data;
-    const currentShow = await Show.findOne({$and: [{apiId:showId},{user:req.session.user._id}]});
-    console.log(arrData)
-    const actors = await getActors(showId);
+    if (isLoggedIn === true) {
+      const currentShow = await Show.findOne({
+        $and: [{ apiId: showId }, { user: req.session.user._id }],
+      });
+      const actors = await getActors(showId);
 
-    res.render("shows/details.hbs", {
-      arrData,
-      currentShow,
-      actors: actors.data.cast.slice(0, 5),
-    });
+      res.render("shows/details.hbs", {
+        arrData,
+        currentShow,
+        actors: actors.data.cast.slice(0, 5),
+      });
+    } else {
+      const currentShow = await Show.findOne({ apiId: showId });
+      const actors = await getActors(showId);
+
+      res.render("shows/details.hbs", {
+        arrData,
+        currentShow,
+        actors: actors.data.cast.slice(0, 5),
+      });
+    }
   } catch (err) {
     next(err);
   }
@@ -47,7 +59,9 @@ router.post("/:showId/details", isLoggedIn, async (req, res, next) => {
     const showDetails = await getDetailsShowsService(showId);
     const arrData = showDetails.data;
     //const showExists = await Show.exists({ apiId: showId });
-    const currentShow = await Show.findOne({$and: [{apiId:showId},{user:req.session.user._id}]});
+    const currentShow = await Show.findOne({
+      $and: [{ apiId: showId }, { user: req.session.user._id }],
+    });
     const showFav = favChecked === "on" ? true : false;
     const actors = await getActors(showId);
 
@@ -71,15 +85,18 @@ router.post("/:showId/details", isLoggedIn, async (req, res, next) => {
         status: status,
         user: req.session.user._id,
       });
-    } 
-    else {
+    } else {
       if (status) {
-        await Show.findByIdAndUpdate(currentShow._id, { status: status }).populate("user");
+        await Show.findByIdAndUpdate(currentShow._id, {
+          status: status,
+        }).populate("user");
       } else {
-        await Show.findByIdAndUpdate(currentShow._id, { isFav: showFav }).populate("user");
-      }     
+        await Show.findByIdAndUpdate(currentShow._id, {
+          isFav: showFav,
+        }).populate("user");
+      }
     }
-    
+
     res.redirect(`/shows/${showId}/details`);
   } catch (err) {
     next(err);
@@ -91,14 +108,15 @@ router.get("/genre/:genreId", async (req, res, next) => {
   const { genreId } = req.params;
 
   const genre = await getGenreList(genreId);
-  const genreList = await getGenreName()
-  const currentGenre = genreList.data.genres.find(genreObj => genreObj.id === parseInt(genreId));
+  const genreList = await getGenreName();
+  const currentGenre = genreList.data.genres.find(
+    (genreObj) => genreObj.id === parseInt(genreId)
+  );
 
-  res.render("shows/shows-by-genre.hbs", { 
+  res.render("shows/shows-by-genre.hbs", {
     genre: genre.data.results,
-    genreName: currentGenre.name
+    genreName: currentGenre.name,
   });
-
 });
 
 module.exports = router;

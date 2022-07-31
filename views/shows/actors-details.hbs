@@ -5,9 +5,9 @@
   width="200px"
 />
 <p>{{actorDetails.biography}}</p>
-
+<div class="list">
 {{#each actorShows}}
-
+<div class="each-list-show">
 <p><a href="/shows/{{this.id}}/details"><img
         src="https://image.tmdb.org/t/p/original/{{this.poster_path}}"
         alt="{{this.name}}"
@@ -18,4 +18,6 @@
     <p>
       {{this.name}}
     </p>
+    </div>
 {{/each}}
+</div>

@@ -18,11 +18,16 @@ router.get("/", (req, res, next) => {
 router.get("/shows-search", async (req, res, next) => {
   const {search} = req.query
   if (!search) {
-    res.redirect ("/shows") 
+    res.render("shows/no-results")
  }
   try {   
-    const showFound = await searchShow (search)
-    res.render ("shows/shows-search-results.hbs", {showFound: showFound.data.results})  
+    
+        const showFound = await searchShow (search)
+        if (showFound.data.total_results === 0) {
+          res.render("shows/no-results")
+       }else
+      {res.render ("shows/shows-search-results.hbs", {showFound: showFound.data.results})  
+      }
   } catch (err) {
     next(err);
   }
