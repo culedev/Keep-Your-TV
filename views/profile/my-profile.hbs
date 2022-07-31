@@ -1,11 +1,9 @@
-<h1>Mi perfil</h1>
-{{log user}}
-<h2>Hello, {{user.username}}</h2>
-
-<img src="{{user.image}}" alt="{{user.name}}">
-
+<h2>Hello, {{session.user.username}}</h2>
+  <img src="{{session.user.image}}" class="rounded" alt="{{session.user.username}}" width="200px">
+{{log session.user.image}}
 <form action="/profile/update" method="POST" enctype="multipart/form-data">
   <label for="image"></label>
   <input type="file" name="image">
-  <button>Agregar/Cambiar Imagen</button>
+  <br>
+  <button>Add Image</button>
 </form>

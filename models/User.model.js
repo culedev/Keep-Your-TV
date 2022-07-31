@@ -25,7 +25,7 @@ const userSchema = new Schema(
     },
     image: {
       type: String,
-      default: "../public/images/defaultuser.jpg" // HAY QUE COMPROBARLO
+      default: "images/defaultuser.jpg"
     }
   },
   {

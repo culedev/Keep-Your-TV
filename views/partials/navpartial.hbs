@@ -71,7 +71,7 @@
           placeholder="Search"
           aria-label="Search"
         />
-        <button class="btn btn-outline-success" type="submit">Search</button>
+        <button class="btn btn-outline-secondary" type="submit">Search</button>
       </form>
       {{#if isUserActive}}
        <ul class="navbar-nav d-flex">
@@ -82,22 +82,26 @@
             role="button"
             data-bs-toggle="dropdown"
             aria-expanded="false"
-          >
+          >         
           <img
-            src="/images/defaultuser.jpg"
+            src={{session.user.image}}
             width="40"
             height="40"
             class="rounded-circle"
           />
         </a>
        <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="/profile/{{req.session.user._id}}">My profile</a></li>
+        
+            <li><a class="dropdown-item" href="/profile">My profile</a></li>
             <li><a class="dropdown-item" href="/profile/lists">My lists</a></li>
+            {{#if isUserAdmin}}
+            <li><a class="dropdown-item" href="/admin">Admin Panel</a></li>
+            {{/if}}
             <li><a class="dropdown-item" href="/auth/logout">Log out</a></li>
       </ul>
       {{else}}
-        <a href="/auth/signup"><button class="btn btn-outline-success">Sign up</button></a>
-        <a href="/auth/login"><button class="btn btn-outline-success">Log in</button></a>
+        <a href="/auth/signup"><button class="btn btn-outline-secondary">Sign up</button></a>
+        <a href="/auth/login"><button class="btn btn-outline-secondary">Log in</button></a>
       {{/if}}
     </div>
   </div>

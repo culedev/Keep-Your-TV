@@ -3,18 +3,21 @@
   <h2>Sign up:</h2>
 
   <form action="/auth/signup" method="POST">
-
-    <label for="username">User name:</label>
-    <input type="text" name="username" />
-    <br>
+    <div class="form-floating mb-3">
+      <label for="username">User name:</label>
+      <input type="text" name="username" class="form-control" id="floatingInput" placeholder="name"/>
+    </div>
+    <div class="form-floating mb-3">
     <label for="email">Email:</label>
-    <input type="text" name="email" />
-    <br>
-    <label for="password">Password</label>
-    <input type="password" name="password" />
-    <br>
+    <input type="text" name="email" class="form-control" id="floatingInput" placeholder="name@example.com"/>
+    </div>
+    <div class="form-floating mb-3">
+      <label for="password">Password:</label>
+      <input type="password" name="password" class="form-control" id="floatingPassword" placeholder="Password"/>
+    </div>
+    <br />
     <p style="background-color: red">{{error}}</p>
-    
+
     <button>Sign Up!</button>
 
   </form>

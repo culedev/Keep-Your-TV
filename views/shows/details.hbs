@@ -6,9 +6,9 @@
       width="200px"
     />
     <br />
- {{#if isUserActive}}
+
     <form action="/shows/{{arrData.id}}/details" method="POST">
-      <input id="heart" name="favChecked" type="checkbox" {{#if currentShow.isFav}}checked{{/if}} onChange="this.form.submit()"/>
+      <input id="heart" name="favChecked" {{#unless isUserActive}}disabled{{/unless}} type="checkbox" {{#if currentShow.isFav}}checked{{/if}} onChange="this.form.submit()"/>
       <label for="heart">❤</label>      
     </form>
 
@@ -19,9 +19,9 @@
             <option value="watching" {{#if (isSelected "watching" currentShow.status)}}selected{{/if}}>Watching</option>
             <option value="watched" {{#if (isSelected "watched" currentShow.status)}}selected{{/if}}>Watched</option>
         </select>
-      <button>Add to list</button>
+      <button {{#unless isUserActive}}disabled{{/unless}}>Add to list</button>
     </form>
-    {{/if}}
+
     <h4>{{error}}</h4>
 
 

@@ -2,16 +2,17 @@ const router = require("express").Router();
 const Show = require("../models/Shows.model");
 const User = require("../models/User.model");
 const uploader = require("../middleware/uploader");
+const { isLoggedIn } = require("../middleware/auth");
 
-//GET "/profile/:userId" => show user's profile
-router.get("/", async (req, res, next) => {
+//GET "/profile" => show user's profile
+router.get("/", isLoggedIn, async (req, res, next) => {
 
     res.render("profile/my-profile.hbs")
 
 });
 
 //GET "/profile/lists" => show user's lists
-router.get("/lists", async (req, res, next) => {
+router.get("/lists", isLoggedIn, async (req, res, next) => {
 
   try {
 
@@ -32,12 +33,13 @@ router.get("/lists", async (req, res, next) => {
 });
 
 // POST "/profile/update" Add an user img
-router.post("/update", uploader.single("image"), async (req, res, next) => {
-  const { userId } = req.session.user._id;
+router.post("/update", isLoggedIn, uploader.single("image"), async (req, res, next) => {
+  const userId = req.session.user._id;
   try {
     await User.findByIdAndUpdate(userId, {
       image: req.file.path,
     });
+
     res.redirect("/profile");
   } catch (err) {
     next(err);

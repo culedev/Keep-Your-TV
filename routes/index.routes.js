@@ -13,21 +13,20 @@ router.get("/", (req, res, next) => {
   res.render("index");
 });
 
-
 //Search results from all the urls in the app
 router.get("/shows-search", async (req, res, next) => {
   const {search} = req.query
   if (!search) {
     res.render("shows/no-results")
- }
-  try {   
+  }
+  try {
     
         const showFound = await searchShow (search)
-        if (showFound.data.total_results === 0) {
+    if (showFound.data.total_results === 0) {
           res.render("shows/no-results")
        }else
       {res.render ("shows/shows-search-results.hbs", {showFound: showFound.data.results})  
-      }
+    }
   } catch (err) {
     next(err);
   }
@@ -43,7 +42,9 @@ const castRoutes = require("./cast.routes.js");
 router.use("/cast", castRoutes);
 
 const profileRoutes = require("./profile.routes.js");
-const User = require("../models/User.model");
 router.use("/profile", profileRoutes);
+
+const adminRoutes = require("./admin.routes.js")
+router.use("/admin", adminRoutes)
 
 module.exports = router;
