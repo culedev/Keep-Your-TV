@@ -40,7 +40,12 @@ router.post("/update", isLoggedIn, uploader.single("image"), async (req, res, ne
       image: req.file.path,
     });
 
-    res.redirect("/profile");
+    req.session.user.image = req.file.path
+
+    req.session.save(() => {
+      res.redirect("/profile");
+    })
+
   } catch (err) {
     next(err);
   }

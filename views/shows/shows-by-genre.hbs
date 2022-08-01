@@ -15,7 +15,11 @@
             <a class="link" href="/shows/{{this.id}}/details">
             <h3 id="title">{{this.name}}</h3>
             <p>{{this.overview}}</p>
-            <p>Genre: </p>
+            <p>Genre:
+            {{#each this.newList}}
+            | {{this.name}} |
+            {{/each}}
+            </p>
             <p>Average rate: {{this.vote_average}}</p>
             </a>
         </div>

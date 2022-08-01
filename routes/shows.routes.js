@@ -15,6 +15,7 @@ router.get("/", async (req, res, next) => {
   const popularShow = await getPopularShowsService();
 
   const arrData = popularShow.data.results;
+  console.log(arrData);
   res.render("shows/home.hbs", { arrData });
 });
 
@@ -106,25 +107,24 @@ router.get("/genre/:genreId", async (req, res, next) => {
       (genreObj) => genreObj.id === parseInt(genreId)
     );
 
-    // const genreIdaa = genre.data.results;
+    genre.data.results.forEach((show) => {
+      
+      const goodArr = show.genre_ids.map((id) => {
+        let names = genreList.data.genres.find((idList) => {
+          if (id === idList.id) {
+            return idList.name;
+          }
+        });
 
-    // const findGenreName = genreIdaa.map((show) => {
-    //   const goodArr = show.genre_ids.map((id) => {
-    //     let names = genreList.data.genres.find((idList) => {
-    //       if (id === idList.id) {
-    //         return idList.name;
-    //       }
-    //     });
-
-    //     return names;
-    //   });
-    //   return goodArr;
-    // });
-   
+        return names;
+      });
+      console.log(goodArr);
+      show.newList = goodArr
+    });
+    console.log(genre.data.results)
     res.render("shows/shows-by-genre.hbs", {
       genre: genre.data.results,
       genreName: currentGenre.name,
-
     });
   } catch (err) {
     next(err);
