@@ -1,17 +1,17 @@
-<h1>My lists</h1>
+<h1 class="bold-title">My lists</h1>
 
-<h4>My favorites</h4>
+<h3 class="bold-title">My favorites shows</h3>
 <div class="list">
   {{#each favShows}}
     <div class="each-list-show">
-      <div class="card" style="width: 160px; height:300px">
+      <div class="card" style="width: 160px; height:330px">
         <a class="link" href="/shows/{{this.apiId}}/details">
           <img
             src="https://image.tmdb.org/t/p/original/{{this.img}}"
             class="card-img-top"
             alt=""
             width="150px"
-            height="220px"
+            height="240px"
           />
         </a>
         <div class="card-body">
@@ -25,18 +25,18 @@
 </div>
   <button class="list-btn"><a href="/profile/lists/my-favorites">Show more...</a></button>
 
-<h4>Watching right now</h4>
+<h3 class="bold-title">Watching right now</h3>
 <div class="list">
   {{#each watchingShows}}
     <div class="each-list-show">
-      <div class="card" style="width: 160px; height:300px">
+      <div class="card" style="width: 160px; height:330px">
         <a class="link" href="/shows/{{this.apiId}}/details">
           <img
             src="https://image.tmdb.org/t/p/original/{{this.img}}"
             class="card-img-top"
             alt=""
             width="150px"
-            height="220px"
+            height="240px"
           />
         </a>
         <div class="card-body">
@@ -50,18 +50,18 @@
   <button class="list-btn"><a href="/profile/lists/watching-shows">Show more...</a></button>
 
 
-<h4>What I want to watch</h4>
+<h3 class="bold-title">What I want to watch</h3>
 <div class="list">
   {{#each pendingShows}}
     <div class="each-list-show">
-      <div class="card" style="width: 160px; height:300px">
+      <div class="card" style="width: 160px; height:330px">
         <a class="link" href="/shows/{{this.apiId}}/details">
           <img
             src="https://image.tmdb.org/t/p/original/{{this.img}}"
             class="card-img-top"
             alt=""
             width="150px"
-            height="220px"
+            height="240px"
           />
         </a>
         <div class="card-body">
@@ -76,18 +76,18 @@
   <button class="list-btn"><a href="/profile/lists/pending-shows">Show more...</a></button>
 
 
-<h4>Already watched</h4>
+<h3 class="bold-title">Already watched</h3>
 <div class="list">
   {{#each watchedShows}}
     <div class="each-list-show">
-      <div class="card" style="width: 160px; height:300px">
+      <div class="card" style="width: 160px; height:330px">
         <a class="link" href="/shows/{{this.apiId}}/details">
           <img
             src="https://image.tmdb.org/t/p/original/{{this.img}}"
             class="card-img-top"
             alt=""
             width="150px"
-            height="220px"
+            height="240px"
           />
         </a>
         <div class="card-body">

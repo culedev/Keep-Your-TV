@@ -21,13 +21,13 @@
     </form>
 
     <form action="/shows/{{arrData.id}}/details" method="POST">
-        <select name="status" >
+        <select name="status" id="status" >
             <option value="nostatus" {{#if (isSelected "nostatus" currentShow.status)}}selected{{/if}}>No list</option>
             <option value="pending" {{#if (isSelected "pending" currentShow.status)}}selected{{/if}}>Pending</option>
             <option value="watching" {{#if (isSelected "watching" currentShow.status)}}selected{{/if}}>Watching</option>
             <option value="watched" {{#if (isSelected "watched" currentShow.status)}}selected{{/if}}>Watched</option>
         </select>
-      <button {{#unless isUserActive}}disabled{{/unless}}>Add to list</button>
+      <button id="add-list-btn" {{#unless isUserActive}}disabled{{/unless}}>Add to list</button>
     </form>
 
     <h4>{{error}}</h4>
@@ -35,12 +35,12 @@
 
   </div>
   <div id="other-details">
-    <h2>{{arrData.name}}</h2>
+    <h2 class="bold-title">{{arrData.name}}</h2>
     <h3>{{arrData.tagline}}</h3>
     <p>{{arrData.overview}}</p>
     <p>Seasons:{{arrData.number_of_seasons}}</p>
+    <p>Average rate: {{arrData.vote_average}}</p>
 
-    <p>Cast:</p>
     <div id="cast">
       {{#each actors}}
         <div id="each-actor">

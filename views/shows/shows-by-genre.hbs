@@ -1,4 +1,4 @@
-<h1>{{genreName.name}}</h1>
+<h1 class="bold-title">{{genreName.name}}</h1>
 
 <div class="shows">
   {{#each genre}}
@@ -24,7 +24,7 @@
       {{/if}}
       <div class="show-data">
         <a class="link" href="/shows/{{this.id}}/details">
-          <h3 id="title">{{this.name}}</h3>
+          <h3 class="title-small" >{{this.name}}</h3>
           <p>{{this.overview}}</p>
           <p>Genre:
             {{#each this.newList}}

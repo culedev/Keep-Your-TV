@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Poller+One&display=swap');
+
 body {
   padding: 0px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
@@ -158,11 +160,11 @@ a:active {
 
 #other-details h2 {
   margin-top: 20px;
-  text-shadow: 3px 3px rgba(0, 0, 0, 0.2);
+  text-shadow: 3px 3px 3px rgba(0, 0, 0, 0.2);
   font-weight: bold;
 }
 
-#title-small {
+.title-small {
   font-weight: bold;
 }
 
@@ -192,6 +194,46 @@ a:active {
   color: white;
 }
 
+.carousel-inner{
+  padding:4
+  0px;
+}
+
+
+.card-title{
+font-weight: bold;
+text-align: center;
+text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3);
+}
+
+#each-actor p {
+  font-weight: bold;
+text-align: center;
+text-shadow: 3px 3px 3px rgba(0, 0, 0, 0.3);
+}
+
+#add-list-btn{
+  background-color: rgba(38, 37, 67, 255);
+  padding: 7px 15px;
+  font-size: 14px;
+  color:white;
+  font-weight: bold;
+  border-radius: 20px;
+  margin: 0px 15px;
+  box-shadow: 3px 3px 10px 4px rgba(0, 0, 0, 0.2);
+}
+
+#status{
+  padding: 7px 15px;
+  font-size: 14px;
+  color:black;
+  font-weight: bold;
+  border-radius: 20px;
+  margin-top: 20px;
+  box-shadow: 3px 3px 10px 4px rgba(0, 0, 0, 0.2);
+}
+
+
 .each-list-show {
   display: flex;
   flex-direction: column;
@@ -215,7 +257,7 @@ a:active {
 
 #each-actor-data h1 {
   margin-top: 20px;
-  text-shadow: 3px 3px rgba(0, 0, 0, 0.2);
+  text-shadow: 3px 3px 3px rgba(0, 0, 0, 0.2);
   font-weight: bold;
 }
 
@@ -230,6 +272,15 @@ a:active {
   width: 70%;
   height: 400px;
   margin: 40px;
+  font-family: Poller One;
+}
+
+.bold-title{
+  font-family: Poller One;
+  margin: 20px 0px;
+  text-shadow: 3px 3px 3px rgba(0, 0, 0, 0.2);
+  color:rgba(38, 37, 67, 255);
+
 }
 
 [id="heart"] {
