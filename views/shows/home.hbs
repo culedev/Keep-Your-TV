@@ -1,9 +1,10 @@
 <h2>Keep Your TV</h2>
 
 <div id="news">
+  <h1>NOTICIAS</h1>
 
 </div>
-
+<h3>TOP TV Shows</h3>
 <div
 
   id="carouselExampleControls"
@@ -41,6 +42,15 @@
               height="290px"
             />
           </a>
+          <a href="{{#getCarId ../arrData @index 3}}{{this}}{{/getCarId}}">               
+            <img
+              src="{{#getCarImg ../arrData @index 3}}{{this}}{{/getCarImg}}"
+              alt=""
+              width="200px"
+              height="290px"
+            />
+          </a>
+          
         
        </div>
        </div> 

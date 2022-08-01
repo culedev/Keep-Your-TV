@@ -8,6 +8,7 @@ const {
   getGenreList,
   getActors,
   getGenreName,
+  getTopRated
 } = require("../services");
 
 // GET "/shows" Homepage popular shows
@@ -127,5 +128,52 @@ router.get("/genre/:genreId", async (req, res, next) => {
     next(err);
   }
 });
+
+// GET POPULAR SHOWS "/shows/popular-shows"
+router.get("/popular-shows",  async(req,res,next) => {
+  const popularShow = await getPopularShowsService();
+  const genreList = await getGenreName();
+
+  popularShow.data.results.forEach((show) => {
+      
+    const goodArr = show.genre_ids.map((id) => {
+      let names = genreList.data.genres.find((idList) => {
+        if (id === idList.id) {
+          return idList.name;
+        }
+      });
+
+      return names;
+    });
+    show.newList = goodArr
+  });
+
+  const arrData = popularShow.data.results;
+  res.render("shows/popular-shows.hbs", { arrData });
+
+})
+
+// GET TOP SHOWS "/shows/top-shows"
+router.get("/top-shows", async(req,res,next)=> {
+ const topRatedShows = await getTopRated()
+ const genreList = await getGenreName();
+
+ topRatedShows.data.results.forEach((show) => {
+     
+   const goodArr = show.genre_ids.map((id) => {
+     let names = genreList.data.genres.find((idList) => {
+       if (id === idList.id) {
+         return idList.name;
+       }
+     });
+
+     return names;
+   });
+   show.newList = goodArr
+ });
+ const topShows = topRatedShows.data.results
+ res.render("shows/top-shows.hbs", {topShows})
+
+})
 
 module.exports = router;

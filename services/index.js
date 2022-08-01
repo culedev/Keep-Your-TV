@@ -42,6 +42,10 @@ const searchShow = (query) => {
 const getGenreName = () => {
   return service.get(`3/genre/tv/list?api_key=${process.env.API_KEY}&language=en-US`)
 }
+const getTopRated = () => {
+  return service.get(`/3/tv/top_rated?api_key=${process.env.API_KEY}&language=en-US&page=1`)
+}
+
 
 module.exports = {
   getPopularShowsService,
@@ -52,4 +56,5 @@ module.exports = {
   getActorShows,
   searchShow,
   getGenreName,
+  getTopRated
 };

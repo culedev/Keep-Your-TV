@@ -69,10 +69,16 @@ h1 {
   background-color: RGB(214, 212, 212, 0.7);
   width: 80%;
   border-radius: 0px 15px 15px 0px;
-  height: 200px;
+  height:max-content;
   box-shadow: 3px 3px 10px 4px rgba(0, 0, 0, 0.2);
-  padding-left: 20px;
+  padding: 20px
+  
 }
+
+.show-data p{
+  width:80%;
+}
+
 
 a:link,
 a:visited,
@@ -134,10 +140,19 @@ a:active {
   margin: 10px;
 }
 
+
+#news{
+  background-color: lightgrey;
+  width:70%;
+  height: 400px;
+  margin:40px;
+}
+
 [id="heart"] {
   position: absolute;
   left: -100vw;
 }
+
 
 [for="heart"] {
   color: #aab8c2;

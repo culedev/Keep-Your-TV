@@ -21,25 +21,54 @@ hbs.registerHelper("getCarImg", (arr, index, pos) => {
   let realIndex;
   let newIndex = index;
 
-  if (index >= 7) {
-    newIndex = index - 7;
+  if (index >= 5) {
+    newIndex = index - 5;
   }
 
-  if (index >= 14) {
-    newIndex = index - 14;
+  if (index >= 10) {
+    newIndex = index - 10;
   }
 
-  if (newIndex % 6 === 0 && newIndex <= 6) {
+  if (index >= 15) {
+    newIndex = index - 15;
+  }
+  if (index >= 20) {
+    newIndex = index - 20;
+  }
+
+  if (newIndex % 8 === 0 && newIndex <= 8) {
     realIndex = Number(newIndex) + Number(pos);
-  } else if (newIndex % 6 !== 0 && newIndex <= 6) {
-    realIndex = 3 * Number(newIndex) + Number(pos);
+  } else if (newIndex % 8 !== 0 && newIndex <= 8) {
+    realIndex = 4 * Number(newIndex) + Number(pos);
   }
 
   return `https://image.tmdb.org/t/p/original/${arr[realIndex]?.poster_path}`;
 });
 
 hbs.registerHelper("getCarId", (arr, index, pos) => {
-  let realIndex = Number(index) + Number(pos);
+  let realIndex;
+  let newIndex = index;
+
+  if (index >= 5) {
+    newIndex = index - 5;
+  }
+
+  if (index >= 10) {
+    newIndex = index - 10;
+  }
+
+  if (index >= 15) {
+    newIndex = index - 15;
+  }
+  if (index >= 20) {
+    newIndex = index - 20;
+  }
+
+  if (newIndex % 8 === 0 && newIndex <= 8) {
+    realIndex = Number(newIndex) + Number(pos);
+  } else if (newIndex % 8 !== 0 && newIndex <= 8) {
+    realIndex = 4 * Number(newIndex) + Number(pos);
+  }
   return `/shows/${arr[realIndex]?.id}/details`;
 });
 
