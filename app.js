@@ -17,6 +17,16 @@ hbs.registerHelper('isSelected', (value, currentStatus) => {
     return value === currentStatus
 })
 
+hbs.registerHelper("getCarImg", (arr, index, pos) => {
+   // return arr[index]
+   let realIndex = Number(index) + Number(pos)
+    return `https://image.tmdb.org/t/p/original/${arr[realIndex]?.poster_path}`
+})
+hbs.registerHelper("getCarId", (arr, index, pos) => {
+    let realIndex = Number(index) + Number(pos)
+     return `/shows/${arr[realIndex]?.id}/details`
+ })
+
 const app = express();
 
 // ℹ️ This function is getting exported from the config folder. It runs most pieces of middleware

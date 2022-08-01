@@ -5,18 +5,46 @@
 </div>
 
 <div
+
   id="carouselExampleControls"
   class="carousel slide"
   data-bs-ride="carousel"
 >
   <div class="carousel-inner">
-       {{#each arrData}}
+        {{#each arrData}} 
        
        <div class="item {{#if @first }}active {{/if}}">
          <div class="carousel-item {{#if @first }}active {{/if}}">
-         <a href="/shows/{{this.id}}/details">                 
+         
+         <a href="{{#getCarId ../arrData @index 0}}{{this}}{{/getCarId}}">
+                       
             <img
-              src="https://image.tmdb.org/t/p/original/{{this.poster_path}}"
+              src="{{#getCarImg ../arrData @index 0}}{{this}}{{/getCarImg}}"
+              alt=""
+              width="200px"
+              height="290px"
+            />
+            
+          </a>
+          <a href="{{#getCarId ../arrData @index 1}}{{this}}{{/getCarId}}">            
+            <img
+              src="{{#getCarImg ../arrData @index 1}}{{this}}{{/getCarImg}}"
+              alt=""
+              width="200px"
+              height="290px"
+            />
+          </a>
+          <a href="{{#getCarId ../arrData @index 2}}{{this}}{{/getCarId}}">               
+            <img
+              src="{{#getCarImg ../arrData @index 2}}{{this}}{{/getCarImg}}"
+              alt=""
+              width="200px"
+              height="290px"
+            />
+          </a>
+          <a href="{{#getCarId ../arrData @index 3}}{{this}}{{/getCarId}}">                
+            <img
+              src="{{#getCarImg ../arrData @index 3}}{{this}}{{/getCarImg}}"
               alt=""
               width="200px"
               height="290px"
@@ -24,7 +52,7 @@
           </a>
          </div>
        </div>
-       {{/each}}      
+        {{/each}}  
      </div>
   <button
     class="carousel-control-prev"
@@ -45,3 +73,4 @@
     <span class="visually-hidden">Next</span>
   </button>
 </div>
+
