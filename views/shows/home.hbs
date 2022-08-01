@@ -10,22 +10,21 @@
   class="carousel slide"
   data-bs-ride="carousel"
 >
-  <div class="carousel-inner">
+  <div class="carousel-inner v-2">
         {{#each arrData}} 
        
        <div class="item {{#if @first }}active {{/if}}">
          <div class="carousel-item {{#if @first }}active {{/if}}">
          
-         <a href="{{#getCarId ../arrData @index 0}}{{this}}{{/getCarId}}">
-                       
-            <img
+         <a href="{{#getCarId ../arrData @index 0}}{{this}}{{/getCarId}}">                       
+          <img
               src="{{#getCarImg ../arrData @index 0}}{{this}}{{/getCarImg}}"
               alt=""
               width="200px"
               height="290px"
             />
-            
           </a>
+         
           <a href="{{#getCarId ../arrData @index 1}}{{this}}{{/getCarId}}">            
             <img
               src="{{#getCarImg ../arrData @index 1}}{{this}}{{/getCarImg}}"
@@ -42,17 +41,11 @@
               height="290px"
             />
           </a>
-          <a href="{{#getCarId ../arrData @index 3}}{{this}}{{/getCarId}}">                
-            <img
-              src="{{#getCarImg ../arrData @index 3}}{{this}}{{/getCarImg}}"
-              alt=""
-              width="200px"
-              height="290px"
-            />
-          </a>
-         </div>
+        
        </div>
-        {{/each}}  
+       </div> 
+        {{/each}} 
+       
      </div>
   <button
     class="carousel-control-prev"
@@ -69,7 +62,7 @@
     data-bs-target="#carouselExampleControls"
     data-bs-slide="next"
   >
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="carousel-control-next-icon" aria-hidden="true" ></span>
     <span class="visually-hidden">Next</span>
   </button>
 </div>

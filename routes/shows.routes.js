@@ -15,7 +15,6 @@ router.get("/", async (req, res, next) => {
   const popularShow = await getPopularShowsService();
 
   const arrData = popularShow.data.results;
-  console.log(arrData);
   res.render("shows/home.hbs", { arrData });
 });
 
@@ -118,10 +117,8 @@ router.get("/genre/:genreId", async (req, res, next) => {
 
         return names;
       });
-      console.log(goodArr);
       show.newList = goodArr
     });
-    console.log(genre.data.results)
     res.render("shows/shows-by-genre.hbs", {
       genre: genre.data.results,
       genreName: currentGenre.name,
