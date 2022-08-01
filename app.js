@@ -36,9 +36,9 @@ hbs.registerHelper("getCarImg", (arr, index, pos) => {
     newIndex = index - 20;
   }
 
-  if (newIndex % 8 === 0 && newIndex <= 8) {
+  if (newIndex % 8 === 0) {
     realIndex = Number(newIndex) + Number(pos);
-  } else if (newIndex % 8 !== 0 && newIndex <= 8) {
+  } else if (newIndex % 8 !== 0) {
     realIndex = 4 * Number(newIndex) + Number(pos);
   }
 
