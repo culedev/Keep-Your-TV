@@ -63,6 +63,13 @@ h1 {
   align-items: center;
 }
 
+.each-img {
+  border-radius: 15px;
+  margin-left: 10px;
+  margin-bottom: 10px;
+  box-shadow: 3px 3px 10px 6px rgba(0, 0, 0, 0.2);
+}
+
 .show-data {
   display: flex;
   flex-direction: column;

@@ -1,12 +1,20 @@
 <div id="show-details">
   <div id="img-and-btn">
+    {{#if arrData.poster_path}}
     <img
       src="https://image.tmdb.org/t/p/original/{{arrData.poster_path}}"
       alt="{{arrData.name}}"
       width="200px"
     />
+    {{else}}
+    <img
+      src="/images/no-image.png"
+      alt="{{arrData.name}}"
+      width="200px"
+    />
+    {{/if}}
     <br />
-
+  {{log arrData.poster_path}}
     <form action="/shows/{{arrData.id}}/details" method="POST">
       <input id="heart" name="favChecked" {{#unless isUserActive}}disabled{{/unless}} type="checkbox" {{#if currentShow.isFav}}checked{{/if}} onChange="this.form.submit()"/>
       <label for="heart">❤</label>      
@@ -36,14 +44,25 @@
     <div id="cast">
       {{#each actors}}
         <div id="each-actor">
-          <a href="/cast/{{this.id}}/details">
+           {{#if this.profile_path}}
+          <a href="/cast/{{this.id}}/details">        
             <img
               src="https://image.tmdb.org/t/p/original/{{this.profile_path}}"
               alt="cast-picture"
               width="100px"
-              height="145"
+              height="145px"
             />
           </a>
+          {{else}}
+          <a href="/cast/{{this.id}}/details">        
+            <img
+              src="/images/no-image.png"
+              alt="cast-picture"
+              width="100px"
+              height="145px"
+            />
+          </a>
+          {{/if}}
           <p>{{this.name}}</p>
         </div>
       {{/each}}

@@ -98,10 +98,11 @@ router.post("/:showId/details", isLoggedIn, async (req, res, next) => {
 });
 
 // GET LIST BY GENRE "/shows/genre/:genreId"
-router.get("/genre/:genreId", async (req, res, next) => {
-  const { genreId } = req.params;
+router.get("/:page/genre/:genreId", async (req, res, next) => {
+  const { page, genreId } = req.params;
+
   try {
-    const genre = await getGenreList(genreId);
+    const genre = await getGenreList(page, genreId);
     const genreList = await getGenreName();
     const currentGenre = genreList.data.genres.find(
       (genreObj) => genreObj.id === parseInt(genreId)
@@ -122,7 +123,7 @@ router.get("/genre/:genreId", async (req, res, next) => {
     });
     res.render("shows/shows-by-genre.hbs", {
       genre: genre.data.results,
-      genreName: currentGenre.name,
+      genreName: currentGenre,
     });
   } catch (err) {
     next(err);
@@ -130,8 +131,9 @@ router.get("/genre/:genreId", async (req, res, next) => {
 });
 
 // GET POPULAR SHOWS "/shows/popular-shows"
-router.get("/popular-shows",  async(req,res,next) => {
-  const popularShow = await getPopularShowsService();
+router.get("/:page/popular-shows",  async(req,res,next) => {
+  const {page} = req.params
+  const popularShow = await getPopularShowsService(page);
   const genreList = await getGenreName();
 
   popularShow.data.results.forEach((show) => {
@@ -154,8 +156,9 @@ router.get("/popular-shows",  async(req,res,next) => {
 })
 
 // GET TOP SHOWS "/shows/top-shows"
-router.get("/top-shows", async(req,res,next)=> {
- const topRatedShows = await getTopRated()
+router.get("/:page/top-shows", async(req,res,next)=> {
+ const {page} = req.params
+ const topRatedShows = await getTopRated(page)
  const genreList = await getGenreName();
 
  topRatedShows.data.results.forEach((show) => {

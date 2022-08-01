@@ -2,26 +2,39 @@
 <div class="shows">
 {{#each showFound}}
 <div class="each-show">
-<a class="link" href="/shows/{{this.id}}/details">
+    {{#if this.poster_path}}
+    <a class="link" href="/shows/{{this.id}}/details">
+        
         <img
         src="https://image.tmdb.org/t/p/original/{{this.poster_path}}"
         alt=""
         width="200px"
         height="300"
         />
+    </a>
+    {{else}}
+    <a class="link" href="/shows/{{this.id}}/details">
+        
+        <img
+        src="/images/no-image.png"
+        alt=""
+        width="200px"
+        height="300"
+        />
+    </a>
+    {{/if}}
+    <div class="show-data">
+        <a class="link" href="/shows/{{this.id}}/details">
+        <h3 id="title">{{this.name}}</h3>
+        <p>{{this.overview}}</p>
+        <p>Genre:
+        {{#each this.newList}}
+        | {{this.name}} |
+        {{/each}}
+        </p>
+        <p>Average rate: {{this.vote_average}}</p>
         </a>
-        <div class="show-data">
-            <a class="link" href="/shows/{{this.id}}/details">
-            <h3 id="title">{{this.name}}</h3>
-            <p>{{this.overview}}</p>
-           <p>Genre:
-            {{#each this.newList}}
-            | {{this.name}} |
-            {{/each}}
-            </p>
-            <p>Average rate: {{this.vote_average}}</p>
-            </a>
-        </div>
+    </div>
 </div>
 {{/each}}
 </div>

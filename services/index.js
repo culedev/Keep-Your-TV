@@ -4,9 +4,9 @@ const service = axios.create({
   baseURL: "https://api.themoviedb.org",
 });
 
-const getPopularShowsService = () => {
+const getPopularShowsService = (page) => {
   return service.get(
-    `/3/tv/popular?api_key=${process.env.API_KEY}&language=en-US&page=1`
+    `/3/tv/popular?api_key=${process.env.API_KEY}&language=en-US&page=${page}`
   );
 };
 
@@ -15,9 +15,9 @@ const getDetailsShowsService = (apiId) => {
     `/3/tv/${apiId}?api_key=${process.env.API_KEY}&language=en-US`
   );
 };
-const getGenreList = (genreId) => {
+const getGenreList = (page, genreId) => {
   return service.get(
-    `/3/discover/tv?api_key=${process.env.API_KEY}&with_genres=${genreId}&page=1`
+    `/3/discover/tv?api_key=${process.env.API_KEY}&with_genres=${genreId}&page=${page}`
   );
 };
 
@@ -42,8 +42,8 @@ const searchShow = (query) => {
 const getGenreName = () => {
   return service.get(`3/genre/tv/list?api_key=${process.env.API_KEY}&language=en-US`)
 }
-const getTopRated = () => {
-  return service.get(`/3/tv/top_rated?api_key=${process.env.API_KEY}&language=en-US&page=1`)
+const getTopRated = (page) => {
+  return service.get(`/3/tv/top_rated?api_key=${process.env.API_KEY}&language=en-US&page=${page}`)
 }
 
 
