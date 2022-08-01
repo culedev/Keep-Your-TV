@@ -1,0 +1,101 @@
+<h1>My lists</h1>
+
+<h4>My favorites</h4>
+<div class="list">
+  {{#each favShows}}
+    <div class="each-list-show">
+      <div class="card" style="width: 160px; height:300px">
+        <a class="link" href="/shows/{{this.apiId}}/details">
+          <img
+            src="https://image.tmdb.org/t/p/original/{{this.img}}"
+            class="card-img-top"
+            alt=""
+            width="150px"
+            height="220px"
+          />
+        </a>
+        <div class="card-body">
+
+          <h5 class="card-title" style="font-size:14px">{{this.name}}</h5>
+        </div>
+      </div>
+    </div>
+  {{/each}}
+  <br />
+</div>
+  <button class="list-btn"><a href="/profile/lists/my-favorites">Show more...</a></button>
+
+<h4>Watching right now</h4>
+<div class="list">
+  {{#each watchingShows}}
+    <div class="each-list-show">
+      <div class="card" style="width: 160px; height:300px">
+        <a class="link" href="/shows/{{this.apiId}}/details">
+          <img
+            src="https://image.tmdb.org/t/p/original/{{this.img}}"
+            class="card-img-top"
+            alt=""
+            width="150px"
+            height="220px"
+          />
+        </a>
+        <div class="card-body">
+
+          <h5 class="card-title" style="font-size:14px">{{this.name}}</h5>
+        </div>
+      </div>
+    </div>
+  {{/each}}
+</div>
+  <button class="list-btn"><a href="/profile/lists/watching-shows">Show more...</a></button>
+
+
+<h4>What I want to watch</h4>
+<div class="list">
+  {{#each pendingShows}}
+    <div class="each-list-show">
+      <div class="card" style="width: 160px; height:300px">
+        <a class="link" href="/shows/{{this.apiId}}/details">
+          <img
+            src="https://image.tmdb.org/t/p/original/{{this.img}}"
+            class="card-img-top"
+            alt=""
+            width="150px"
+            height="220px"
+          />
+        </a>
+        <div class="card-body">
+
+          <h5 class="card-title" style="font-size:14px">{{this.name}}</h5>
+        </div>
+      </div>
+    </div>
+  {{/each}}
+</div>
+
+  <button class="list-btn"><a href="/profile/lists/pending-shows">Show more...</a></button>
+
+
+<h4>Already watched</h4>
+<div class="list">
+  {{#each watchedShows}}
+    <div class="each-list-show">
+      <div class="card" style="width: 160px; height:300px">
+        <a class="link" href="/shows/{{this.apiId}}/details">
+          <img
+            src="https://image.tmdb.org/t/p/original/{{this.img}}"
+            class="card-img-top"
+            alt=""
+            width="150px"
+            height="220px"
+          />
+        </a>
+        <div class="card-body">
+
+          <h5 class="card-title" style="font-size:14px">{{this.name}}</h5>
+        </div>
+      </div>
+    </div>
+  {{/each}}
+</div>
+  <button class="list-btn"><a href="/profile/lists/watched-shows">Show more...</a></button>

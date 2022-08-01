@@ -21,16 +21,66 @@ router.get("/lists", isLoggedIn, async (req, res, next) => {
     const pendingShows = await Show.find({$and: [{status: "pending"}, {user: req.session.user._id}]})
     const watchingShows = await Show.find({$and: [{status: "watching"}, {user: req.session.user._id}]})
 
-    res.render("profile/lists.hbs", {
-      favShows,
-      watchedShows,
-      pendingShows,
-      watchingShows,
+    res.render("profile/lists/lists.hbs", {
+      favShows:favShows.slice(0,5),
+      watchedShows:watchedShows.slice(0,5),
+      pendingShows:pendingShows.slice(0,5),
+      watchingShows:watchingShows.slice(0,5),
     });
   } catch (err) {
     next(err);
   }
 });
+
+//GET "/profile/lists/my-favorites" => show all favorites
+router.get("/lists/my-favorites", isLoggedIn, async (req, res, next)=> {
+  try {
+    const favShows = await Show.find({$and: [{isFav: true}, {user: req.session.user._id}]})
+    res.render("profile/lists/my-favorites.hbs", {
+      favShows
+    })
+  } catch (err) {
+    next(err);
+  }
+})
+
+//GET "/profile/lists/watching-shows" => show all the shows I'm watching
+router.get("/lists/watching-shows", isLoggedIn, async (req, res, next)=> {
+  try {
+    const watchingShows = await Show.find({$and: [{status: "watching"}, {user: req.session.user._id}]})
+    res.render("profile/lists/watching-shows.hbs", {
+      watchingShows
+    })
+  } catch (err) {
+    next(err);
+  }
+})
+
+//GET "/profile/lists/watched-shows" => show all the shows I've watched
+router.get("/lists/watched-shows", isLoggedIn, async (req, res, next)=> {
+  try {
+    const watchedShows = await Show.find({$and: [{status: "watched"}, {user: req.session.user._id}]})
+    res.render("profile/lists/watched-shows.hbs", {
+      watchedShows
+    })
+  } catch (err) {
+    next(err);
+  }
+})
+
+//GET "/profile/lists/pending-shows" => show all the shows I've watched
+router.get("/lists/pending-shows", isLoggedIn, async (req, res, next)=> {
+  try {
+    const pendingShows = await Show.find({$and: [{status: "pending"}, {user: req.session.user._id}]})
+    res.render("profile/lists/pending-shows.hbs", {
+      pendingShows
+    })
+  } catch (err) {
+    next(err);
+  }
+})
+
+
 
 // POST "/profile/update" Add an user img
 router.post("/update", isLoggedIn, uploader.single("image"), async (req, res, next) => {

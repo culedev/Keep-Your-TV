@@ -1,0 +1,22 @@
+<h4>Already watched</h4>
+<div class="list">
+  {{#each watchedShows}}
+    <div class="each-list-show">
+      <div class="card" style="width: 160px; height:300px">
+        <a class="link" href="/shows/{{this.apiId}}/details">
+          <img
+            src="https://image.tmdb.org/t/p/original/{{this.img}}"
+            class="card-img-top"
+            alt=""
+            width="150px"
+            height="220px"
+          />
+        </a>
+        <div class="card-body">
+
+          <h5 class="card-title" style="font-size:14px">{{this.name}}</h5>
+        </div>
+      </div>
+    </div>
+  {{/each}}
+</div>

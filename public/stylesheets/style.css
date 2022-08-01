@@ -132,6 +132,24 @@ a:active {
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: center;
+  background-color:#E5E5E5;
+  padding:30px 80px;
+  border-radius: 20px;
+  width:max-content
+}
+
+.list-btn{
+  background-color: rgba(38,37,67,255);
+  padding:12px 25px;
+  font-size:14px;
+  font-weight: bold;
+  border-radius: 20px;
+  margin: 20px 0px 40px 0px;
+  box-shadow: 3px 3px 10px 4px rgba(0, 0, 0, 0.2);;
+}
+
+.list-btn a{
+  color:white;
 }
 
 .each-list-show{
