@@ -116,8 +116,9 @@ router.post("/:showId/details", isLoggedIn, async (req, res, next) => {
       review,
       user: req.session.user._id
     })
-  }
-    res.redirect(`/shows/${showId}/details`);
+  } 
+  res.redirect(`/shows/${showId}/details`);
+
   } catch (err) {
     next(err);
   }
