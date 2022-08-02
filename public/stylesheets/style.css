@@ -148,7 +148,8 @@ a:active {
 #show-details {
   display: flex;
   flex-direction: row;
-  justify-content: flex-start;
+  justify-content: space-evenly;
+  width: 95%;
   margin-top: 15px;
 }
 
@@ -339,11 +340,20 @@ a:active {
 }
 
 #news {
-  background-color: lightgrey;
+  background-color: #24243e;
   width: 70%;
-  height: 400px;
+  height: 600px;
   margin: 40px;
   font-family: Righteous;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#news h3 {
+  text-align: center;
+  color: lightgray;
 }
 
 .bold-title {
@@ -427,4 +437,18 @@ label.star:hover {
 label.star:before {
   content: "\f006";
   font-family: FontAwesome;
+}
+.carouselimg {
+  width: 600px;
+  height: 500px;
+}
+
+.index-logo {
+  margin-top: 50px;
+}
+
+.index-logo h1{
+  text-align: center;
+  font-size: 50px;
+  font-weight: bolder;
 }

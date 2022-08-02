@@ -1,7 +1,40 @@
-<h2>Keep Your TV</h2>
-
 <div id="news">
-  <h1>NOTICIAS</h1>
+  
+<div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="true">
+  <div class="carousel-indicators">
+    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+  </div>
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <a href="{{announcements.0.url}}"></a>
+      <h3>{{announcements.0.title}}</h3>     
+      <img src="{{announcements.0.image}}" class="d-block w-100 carouselimg" alt="{{announcements.0.title}}">
+      </a>
+    </div>
+    <div class="carousel-item">
+      <a href="{{announcements.1.url}}">
+      <h3>{{announcements.1.title}}</h3>
+      <img src="{{announcements.1.image}}" class="d-block w-100 carouselimg" alt="{{announcements.0.title}}">
+      </a>
+    </div>
+    <div class="carousel-item">
+      <a href="{{announcements.2.url}}">
+      <h3>{{announcements.2.title}}</h3>
+      <img src="{{announcements.2.image}}" class="d-block w-100 carouselimg" alt="{{announcements.0.title}}">
+      </a>
+    </div>
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
 
 </div>
 <div class="bold-title">

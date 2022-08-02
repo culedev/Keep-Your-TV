@@ -2,6 +2,7 @@ const router = require("express").Router();
 const Show = require("../models/Shows.model");
 const Review = require("../models/Review.model")
 const User =require ("../models/User.model")
+const Announcement = require("../models/News.model")
 const { isLoggedIn } = require("../middleware/auth");
 
 const {
@@ -16,10 +17,15 @@ const { findById } = require("../models/Shows.model");
 
 // GET "/shows" Homepage popular shows
 router.get("/", async (req, res, next) => {
-  const popularShow = await getPopularShowsService();
-
-  const arrData = popularShow.data.results;
-  res.render("shows/home.hbs", { arrData });
+  try {
+    const popularShow = await getPopularShowsService();
+    const announcements = await Announcement.find()
+  
+    const arrData = popularShow.data.results;
+    res.render("shows/home.hbs", { arrData, announcements});
+  } catch (err) {
+    next(err)
+  }
 });
 
 // GET "/shows/:apiId/details"
@@ -198,27 +204,5 @@ router.get("/:page/top-shows", async(req,res,next)=> {
  res.render("shows/top-shows.hbs", {topShows})
 
 })
-
-//POST "shows/:id/details" => write a review
-
-// router.post("/:showId/details", isLoggedIn, async (req, res, next) => {
-//   const {showId} = req.params
-//   const {title, review} = req.body
-//   console.log(req.body)
-//   try{
-//     let showFound = await Show.findOne({apiId:showId})
-//     console.log(showFound)
-//     await Review.create({
-//     show: showFound._id,
-//     title,
-//     review,
-//     user: req.session.user._id    
-//   })
-//   res.redirect(`/shows/${showId}/details`);
-// } catch (err) {
-//   next(err);
-// }
-// })
-
 
 module.exports = router;
