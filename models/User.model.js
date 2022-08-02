@@ -30,7 +30,8 @@ const userSchema = new Schema(
     isBanned: {
       type: Boolean,
       default: false,
-    }
+    },
+    friends:[Array]
   },
   {
     // this second object adds extra properties: `createdAt` and `updatedAt`

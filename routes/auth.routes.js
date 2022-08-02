@@ -99,7 +99,6 @@ router.post("/login", async (req, res, next) => {
         return;
     }
 
-    //TODO PENDIENTE DE HACER CUANDO EL MODELO ESTE COMPLETADO
     req.session.user = {
         _id: foundUser._id,
         email: foundUser.email,
@@ -107,6 +106,7 @@ router.post("/login", async (req, res, next) => {
         username: foundUser.username,
         image: foundUser.image,
         isBanned: foundUser.isBanned,
+        friends:[],
       };
 
       req.session.save(() => {

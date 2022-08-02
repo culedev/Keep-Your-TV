@@ -4,10 +4,15 @@
     {{#if showUser}}
         {{#each showUser}}
         <div class="each-show">
-            <img src="{{this.image}}" alt="{{this.username}}" width="200px" height="300">
+            <div id="user-image">
+            <img src="{{this.image}}" alt="{{this.username}}">
+            </div>
             <div class="show-data">
                 <h1>User: {{this.username}}</h1>
-            </div>
+                <form action="/profile/{{this._id}}/add-friend" method="POST">
+                 <button class="btn btn-success">Add friend</button>
+                </form>
+            </div>           
         </div>
         {{/each}}
     {{/if}}

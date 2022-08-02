@@ -35,7 +35,6 @@ router.post(
 router.get("/listbanned", async (req, res, next) => {
   try {
     const bannedUser = await User.find({ isBanned: true });
-    console.log(bannedUser);
     res.render("admin/listbanned.hbs", {
       bannedUser,
     })

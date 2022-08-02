@@ -64,6 +64,12 @@ h1 {
   flex-wrap: wrap;
 }
 
+#user-image img{
+  width:200px;
+  height:200px;
+  border-radius:200px;
+}
+
 .each-show {
   display: flex;
   flex-direction: row;
@@ -92,6 +98,10 @@ h1 {
 
 .show-data p {
   width: 80%;
+}
+
+.show-data button{
+  width:15%
 }
 
 a:link,

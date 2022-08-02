@@ -101,4 +101,38 @@ router.post("/update", isLoggedIn, uploader.single("image"), async (req, res, ne
   }
 });
 
+
+//POST "/profile/{{this._id}}/add-friend => Add friend
+router.post("/:userId/add-friend", isLoggedIn, async (req, res, next)=> {
+const {userId} = req.params
+
+  try {
+    const userAdded = await User.findById(userId)
+
+    User.findByIdAndUpdate({_id: req.session.user._id}, {$push: {friends: userAdded}},).exec();
+
+    req.session.save(() => {
+      res.redirect("/profile/friends-list");
+    })
+  } catch (err) {
+    next(err)
+  }
+})
+
+
+//GET "/profile/friends-list" =>lista de amigos
+
+router.get ("/friends-list", isLoggedIn, async(req,res,next)=> {
+  try {
+    console.log(req.session.user.friends)
+    res.render("profile/lists/friends-list.hbs", {
+      friends:req.session.user.friends,
+    })
+  } catch (err) {
+    next(err);
+  }
+
+})
+
+
 module.exports = router;
