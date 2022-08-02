@@ -137,10 +137,8 @@ a:active {
   flex-direction: column;
   margin-left: 30px;
   margin-top: 100px;
-  padding-right: 30px;
-  justify-content: flex-start;
-  align-items: center;
-  width: 33%;
+  margin-right: 10px;
+  width: 45%;
 }
 
 #img-and-btn img {
@@ -152,6 +150,7 @@ a:active {
 #show-details {
   display: flex;
   flex-direction: row;
+  justify-content: flex-start;
   width: 95%;
   margin-top: 15px;
 }
@@ -170,13 +169,15 @@ a:active {
   text-shadow: 3px 3px 3px rgba(0, 0, 0, 0.2);
   font-weight: bold;
 }
-
+.overview {
+  margin-top:30px;
+}
 #each-review {
   background-color: white;
   padding: 20px;
   margin: 15px;
   border-radius: 15px;
-  width: 90%;
+  width: 120%;
 }
 #image-username {
   display: flex;
@@ -207,7 +208,7 @@ a:active {
 }
 
 #add-review input {
-  border-radius: 15px;
+  border-radius: 10px;
   border: none;
   box-shadow: 3px 3px 10px 6px rgba(0, 0, 0, 0.2);
   
@@ -404,20 +405,31 @@ a:active {
   animation: heart 1s cubic-bezier(0.17, 0.89, 0.32, 1.49);
 }
 
+.delete-ban {
+  margin-top:10px;
+  font-weight: bold;
+  border-radius: 10px;
+}
 
 /* ESTRELLAS */
 div.stars {
   width: 100%;
   display: inline-block;
+  margin-top:10px
+
 }
 
 input.star {
   display: none;
 }
 
+.star-1{
+  margin-left:-15px;
+}
+
 label.star {
   float: right;
-  padding: 2px;
+  padding:2px;
   font-size: 25px;
   color: #4a148c;
   transition: all 0.2s;
@@ -428,7 +440,7 @@ input.star:checked ~ label.star:before {
   color: #4a148c;
   transition: all 0.25s;
 }
-/* #fd4 star color checked*/
+
 input.star-5:checked ~ label.star:before {
   color: #5e2a9e;
   text-shadow: 0 0 10px #310664;
@@ -447,9 +459,10 @@ label.star:before {
   font-family: FontAwesome;
 }
 .carouselimg {
-  width: 100%;
+  width: 600px;
   height: 500px;
   border-radius: 10px;
+ 
 }
 
 .index-logo {
@@ -510,6 +523,7 @@ margin-bottom: 50px;
 #search input{
   border-radius: 10px;
 }
+
 #results-error{
 margin-top:50px;
 text-align: center;
@@ -521,5 +535,34 @@ text-align: center;
   display: flex;
   flex-direction: column;
   align-items:flex-start
- 
+}
+
+#my-profile{
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#my-profile form{
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top:20px;
+}
+
+#news-admin{
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#news-admin form{
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top:20px;
+}
+
+#news-admin input{
+  border-radius: 10px;;
 }

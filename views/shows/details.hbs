@@ -1,4 +1,5 @@
 <div id="show-details">
+  {{log session.user}}
   <div id="img-and-btn">
     {{#if arrData.poster_path}}
     <img
@@ -37,11 +38,11 @@
   <div class="super-body">
     <div id="other-details">
       <h2 class="bold-title">{{arrData.name}}</h2>
-      <iframe id="ytplayer" type="text/html" width="800" height="400"
-        src="http://www.youtube.com/embed/{{firstTrailer.key}}"
-        frameborder="0" controls/></iframe> 
       <h3>{{arrData.tagline}}</h3>
-      <p>{{arrData.overview}}</p>
+      <iframe id="ytplayer" type="text/html" width="700" height="400"
+        src="http://www.youtube.com/embed/{{firstTrailer.key}}"
+        frameborder="0" controls/></iframe>      
+      <p class="overview">{{arrData.overview}}</p>
       <p>Seasons:{{arrData.number_of_seasons}}</p>
       <p>Average rate: {{arrData.vote_average}}</p>
 
@@ -109,18 +110,22 @@
             </div>
           </div>
         </div>
-
+        {{log }}
         <p class="review-title">{{this.title}}</p>
+        
+  
         <p>{{this.review}}</p>
-        {{#if (isUser this.user.username ../this.session.user.username ../this.isUserAdmin)}}        
-          <form action="/shows/{{this.show}}/details/delete" method="POST">
-            <button class="btn btn-danger">DELETE</button>
-          </form>
-        {{/if}}
-        {{#if ../this.isUserAdmin}}
+        {{#if (isUser this.user.username ../this.session.user.username ../this.isUserAdmin)}}
+        
+        <form action="/shows/{{this.show}}/details/delete" method="POST">
+          <button class="btn btn-danger delete-ban">DELETE</button>
+        </form>
+          {{/if}}
+          {{#if ../this.isUserAdmin}}
           <form action="/shows/{{this.show}}/{{this.user._id}}/banned" method="POST">
-            <button class="btn btn-warning">BAN USER</button>
-          </form>          
+            <button class="btn btn-warning delete-ban">BAN USER</button>
+          </form>
+          
         {{/if}}
       </div>
       {{/each}}
