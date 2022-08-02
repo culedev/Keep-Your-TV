@@ -64,7 +64,9 @@
           </ul>
         </li>
       </ul>
+      <div id="search">
       <form action="/shows-search" method= "GET" class="d-flex" role="search" >
+      
         <input
           class="form-control me-2"
           type="text"
@@ -73,8 +75,9 @@
           placeholder="Search"
           aria-label="Search"
         />
-        <button class="btn btn-outline-secondary" type="submit">Search</button>
+        <button class="btn btn-outline-success" type="submit">Search</button>
       </form>
+      </div>
       {{#if isUserActive}}
        <ul class="navbar-nav d-flex">
         <li class="nav-item dropdown">
@@ -102,8 +105,8 @@
             <li><a class="dropdown-item" href="/auth/logout">Log out</a></li>
       </ul>
       {{else}}
-        <a href="/auth/signup"><button class="btn btn-outline-secondary">Sign up</button></a>
-        <a href="/auth/login"><button class="btn btn-outline-secondary">Log in</button></a>
+        <a href="/auth/signup"><button class="btn btn-outline">Sign up</button></a>
+        <a href="/auth/login"><button class="btn btn-outline">Log in</button></a>
       {{/if}}
     </div>
   </div>

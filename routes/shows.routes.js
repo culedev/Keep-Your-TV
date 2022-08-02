@@ -36,8 +36,6 @@ router.get("/:showId/details", async (req, res, next) => {
     const arrData = showDetails.data;
     const actors = await getActors(showId);
     const review = await Review.find({show:showId}).populate("user")
-    const adminUser = await User.find({role: "admin"})
-    console.log (adminUser)
     if (typeof req.session.user !== "undefined") {
       const currentShow = await Show.findOne({
         $and: [{ apiId: showId }, { user: req.session.user._id }],
@@ -46,15 +44,13 @@ router.get("/:showId/details", async (req, res, next) => {
         arrData,
         currentShow,
         actors: actors.data.cast.slice(0, 5),
-        review,
-        adminUser
+        review,        
       });
     } else {
       res.render("shows/details.hbs", {
         arrData,
         actors: actors.data.cast.slice(0, 5),
-        review,
-        adminUser
+        review, 
       });
     }
 
@@ -67,7 +63,6 @@ router.get("/:showId/details", async (req, res, next) => {
 router.post("/:showId/details", isLoggedIn, async (req, res, next) => {
   const { showId } = req.params;
   const { status, favChecked, title, review, star } = req.body;
-  console.log(star)
   try {
     const showDetails = await getDetailsShowsService(showId);
     const arrData = showDetails.data;
