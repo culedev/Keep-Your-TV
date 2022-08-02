@@ -1,8 +1,9 @@
-@import url('https://fonts.googleapis.com/css2?family=Poller+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Righteous&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@500&family=Righteous&display=swap');
 
 body {
   padding: 0px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  font: 14px "Quicksand", Helvetica, Arial, sans-serif;
   background: #0f0c29; /* fallback for old browsers */
   background: -webkit-linear-gradient(
     to right,
@@ -272,11 +273,11 @@ text-shadow: 3px 3px 3px rgba(0, 0, 0, 0.3);
   width: 70%;
   height: 400px;
   margin: 40px;
-  font-family: Poller One;
+  font-family: Righteous;
 }
 
 .bold-title{
-  font-family: Poller One;
+  font-family: Righteous;
   margin: 20px 0px;
   text-shadow: 3px 3px 3px rgba(0, 0, 0, 0.2);
   color:rgba(38, 37, 67, 255);

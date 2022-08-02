@@ -62,7 +62,7 @@ router.post("/:showId/details", isLoggedIn, async (req, res, next) => {
     const actors = await getActors(showId);
 
     if (!currentShow) {
-      if (status && status === "nostatus") {
+      if (status === "nostatus") {
         res.render("shows/details.hbs", {
           arrData,
           currentShow,

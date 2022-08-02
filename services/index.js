@@ -32,12 +32,13 @@ const getActorDetails = (actorId) => {
 };
 
 const getActorShows = (actorId) => {
-  return service.get(`/3/person/${actorId}}/tv_credits?api_key=${process.env.API_KEY}`);
+  return service.get(`/3/person/${actorId}/tv_credits?api_key=${process.env.API_KEY}`);
 };
 
 const searchShow = (query) => {
   return service.get(`/3/search/tv?api_key=${process.env.API_KEY}&language=en-US&page=1&query=${query}&include_adult=false`);
 };
+
 
 const getGenreName = () => {
   return service.get(`3/genre/tv/list?api_key=${process.env.API_KEY}&language=en-US`)
@@ -45,6 +46,11 @@ const getGenreName = () => {
 const getTopRated = (page) => {
   return service.get(`/3/tv/top_rated?api_key=${process.env.API_KEY}&language=en-US&page=${page}`)
 }
+
+const getTrailer = (showId) => {
+  return service.get(`3/tv/${showId}/videos?api_key=${process.env.API_KEY}###`)
+}
+
 
 
 module.exports = {
@@ -56,5 +62,6 @@ module.exports = {
   getActorShows,
   searchShow,
   getGenreName,
-  getTopRated
+  getTopRated,
+  getTrailer
 };
