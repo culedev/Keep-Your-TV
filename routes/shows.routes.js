@@ -4,14 +4,14 @@ const Review = require("../models/Review.model")
 const User =require ("../models/User.model")
 const Announcement = require("../models/News.model")
 const { isLoggedIn } = require("../middleware/auth");
-
 const {
   getPopularShowsService,
   getDetailsShowsService,
   getGenreList,
   getActors,
   getGenreName,
-  getTopRated
+  getTopRated,
+  getTrailer,
 } = require("../services");
 const { findById } = require("../models/Shows.model");
 
@@ -36,6 +36,10 @@ router.get("/:showId/details", async (req, res, next) => {
     const arrData = showDetails.data;
     const actors = await getActors(showId);
     const review = await Review.find({show:showId}).populate("user")
+    const adminUser = await User.find({role: "admin"})
+    const trailer = await getTrailer(showId);
+    const firstTrailer = trailer.data.results.find(trailerObj => trailerObj.type === "Trailer")
+    
     if (typeof req.session.user !== "undefined") {
       const currentShow = await Show.findOne({
         $and: [{ apiId: showId }, { user: req.session.user._id }],
@@ -44,7 +48,9 @@ router.get("/:showId/details", async (req, res, next) => {
         arrData,
         currentShow,
         actors: actors.data.cast.slice(0, 5),
-        review,        
+        review,
+        adminUser,
+        firstTrailer,
       });
     } else {
       res.render("shows/details.hbs", {
@@ -53,7 +59,6 @@ router.get("/:showId/details", async (req, res, next) => {
         review, 
       });
     }
-
   } catch (err) {
     next(err);
   }

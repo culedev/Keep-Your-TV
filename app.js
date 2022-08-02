@@ -17,6 +17,10 @@ hbs.registerHelper("isSelected", (value, currentStatus) => {
   return value === currentStatus;
 });
 
+hbs.registerHelper("starsSelected", (value, currentStatus) => {
+  return value === currentStatus;
+});
+
 hbs.registerHelper("getCarImg", (arr, index, pos) => {
   let realIndex;
   let newIndex = index;
@@ -72,10 +76,6 @@ hbs.registerHelper("getCarId", (arr, index, pos) => {
   return `/shows/${arr[realIndex]?.id}/details`;
 });
 
-
-hbs.registerHelper("starsSelected", (value, currentStatus) => {
-  return value === currentStatus;
-});
 
 
 const app = express();

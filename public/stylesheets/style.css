@@ -176,6 +176,7 @@ a:active {
 #image-username {
   display: flex;
   flex-direction: row;
+  margin-right: auto;
 }
 
 #reviews{
@@ -196,6 +197,7 @@ a:active {
 #user-role {
   display: flex;
   flex-direction: column;
+  margin-right: auto;
 }
 
 .review-title {
@@ -445,6 +447,8 @@ label.star:before {
 .carouselimg {
   width: 600px;
   height: 500px;
+  border-radius: 10px;
+ 
 }
 
 .index-logo {
