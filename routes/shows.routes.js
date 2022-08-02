@@ -77,6 +77,7 @@ router.post("/:showId/details", isLoggedIn, async (req, res, next) => {
     const showFav = favChecked === "on" ? true : false;
     const actors = await getActors(showId);
 
+    // FAV ICON + LISTS
     if (!currentShow) {
       if (status === "nostatus") {
         res.render("shows/details.hbs", {
@@ -106,8 +107,8 @@ router.post("/:showId/details", isLoggedIn, async (req, res, next) => {
         });
       }
     }
-  
 
+    // REVIEW + STARS
     if (title && review && star ) {
       await Review.create({
       show: showId,
