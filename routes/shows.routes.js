@@ -3,7 +3,7 @@ const Show = require("../models/Shows.model");
 const Review = require("../models/Review.model");
 const User = require("../models/User.model");
 const Announcement = require("../models/News.model");
-const { isLoggedIn, isUserBan } = require("../middleware/auth");
+const { isLoggedIn, isUserBan, isAdmin } = require("../middleware/auth");
 const {
   getPopularShowsService,
   getDetailsShowsService,
@@ -13,6 +13,10 @@ const {
   getTopRated,
   getTrailer,
 } = require("../services");
+const {
+  findByIdAndUpdate,
+  findOneAndUpdate,
+} = require("../models/Shows.model");
 
 // GET "/shows" Homepage popular shows
 router.get("/", async (req, res, next) => {
@@ -66,64 +70,69 @@ router.get("/:showId/details", async (req, res, next) => {
 });
 
 // POST "/shows/:apId/details" tomar datos y almacenar en DB BOTON FAVORITO
-router.post("/:showId/details", isLoggedIn, isUserBan, async (req, res, next) => {
-  const { showId } = req.params;
-  const { status, favChecked, title, review, star } = req.body;
-  try {
-    const showDetails = await getDetailsShowsService(showId);
-    const arrData = showDetails.data;
-    const currentShow = await Show.findOne({
-      $and: [{ apiId: showId }, { user: req.session.user._id }],
-    });
-    const showFav = favChecked === "on" ? true : false;
-    const actors = await getActors(showId);
-
-    // FAV ICON + LISTS
-    if (!currentShow) {
-      if (status === "nostatus") {
-        res.render("shows/details.hbs", {
-          arrData,
-          currentShow,
-          actors: actors.data.cast.slice(0, 5),
-          error: "You have to select a valid status",
-        });
-        return;
-      }
-      await Show.create({
-        apiId: arrData.id,
-        name: arrData.name,
-        img: arrData.poster_path,
-        isFav: showFav,
-        status: status,
-        user: req.session.user._id,
+router.post(
+  "/:showId/details",
+  isLoggedIn,
+  isUserBan,
+  async (req, res, next) => {
+    const { showId } = req.params;
+    const { status, favChecked, title, review, star } = req.body;
+    try {
+      const showDetails = await getDetailsShowsService(showId);
+      const arrData = showDetails.data;
+      const currentShow = await Show.findOne({
+        $and: [{ apiId: showId }, { user: req.session.user._id }],
       });
-    } else {
-      if (status) {
-        await Show.findByIdAndUpdate(currentShow._id, {
+      const showFav = favChecked === "on" ? true : false;
+      const actors = await getActors(showId);
+
+      // FAV ICON + LISTS
+      if (!currentShow) {
+        if (status === "nostatus") {
+          res.render("shows/details.hbs", {
+            arrData,
+            currentShow,
+            actors: actors.data.cast.slice(0, 5),
+            error: "You have to select a valid status",
+          });
+          return;
+        }
+        await Show.create({
+          apiId: arrData.id,
+          name: arrData.name,
+          img: arrData.poster_path,
+          isFav: showFav,
           status: status,
+          user: req.session.user._id,
         });
       } else {
-        await Show.findByIdAndUpdate(currentShow._id, {
-          isFav: showFav,
+        if (status) {
+          await Show.findByIdAndUpdate(currentShow._id, {
+            status: status,
+          });
+        } else {
+          await Show.findByIdAndUpdate(currentShow._id, {
+            isFav: showFav,
+          });
+        }
+      }
+
+      // REVIEW + STARS
+      if (title && review && star) {
+        await Review.create({
+          show: showId,
+          star,
+          title,
+          review,
+          user: req.session.user._id,
         });
       }
+      res.redirect(`/shows/${showId}/details`);
+    } catch (err) {
+      next(err);
     }
-
-    // REVIEW + STARS
-    if (title && review && star) {
-      await Review.create({
-        show: showId,
-        star,
-        title,
-        review,
-        user: req.session.user._id,
-      });
-    }
-    res.redirect(`/shows/${showId}/details`);
-  } catch (err) {
-    next(err);
   }
-});
+);
 
 // GET LIST BY GENRE "/shows/genre/:genreId"
 router.get("/:page/genre/:genreId", async (req, res, next) => {
@@ -209,6 +218,18 @@ router.post("/:showId/details/delete", isLoggedIn, async (req, res, next) => {
     await Review.findOneAndDelete({
       $and: [{ user: req.session.user._id }, { show: showId }],
     });
+    res.redirect(`/shows/${showId}/details`);
+  } catch (err) {
+    next(err);
+  }
+});
+
+// POST "/shows/:showId/banned"
+router.post("/:showId/:userId/banned", isAdmin, async (req, res, next) => {
+  const { showId, userId } = req.params;
+  try {
+    await User.findByIdAndUpdate(userId, { isBanned: true });
+
     res.redirect(`/shows/${showId}/details`);
   } catch (err) {
     next(err);
