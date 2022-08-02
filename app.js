@@ -72,6 +72,12 @@ hbs.registerHelper("getCarId", (arr, index, pos) => {
   return `/shows/${arr[realIndex]?.id}/details`;
 });
 
+
+hbs.registerHelper("starsSelected", (value, currentStatus) => {
+  return value === currentStatus;
+});
+
+
 const app = express();
 
 // ℹ️ This function is getting exported from the config folder. It runs most pieces of middleware

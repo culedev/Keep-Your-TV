@@ -1,5 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=Righteous&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@500&family=Righteous&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Righteous&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@500&family=Righteous&display=swap");
 
 body {
   padding: 0px;
@@ -23,7 +23,7 @@ body {
 
 #body-page {
   width: 100%;
-  
+
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -41,7 +41,7 @@ body {
   width: 80%;
 
   position: relative;
-  
+
   left: 10%;
 }
 
@@ -165,6 +165,77 @@ a:active {
   font-weight: bold;
 }
 
+#each-review {
+  background-color: white;
+  padding: 20px;
+  margin: 15px;
+  border-radius: 15px;
+  width: 90%;
+}
+#image-username {
+  display: flex;
+  flex-direction: row;
+}
+
+.review-username {
+  font-weight: bold;
+  margin-left: 10px;
+  margin-top: 4px;
+  margin-bottom: 0;
+}
+.role {
+  margin-left: 10px;
+  font-size: 10px;
+  margin-top: 0;
+}
+#user-role {
+  display: flex;
+  flex-direction: column;
+}
+
+.review-title {
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+#add-review input {
+  border-radius: 15px;
+  border: none;
+  box-shadow: 3px 3px 10px 6px rgba(0, 0, 0, 0.2);
+}
+
+#add-review {
+  background-color: rgb(229, 229, 229, 0.4);
+  padding-top: 40px;
+  padding-left: 40px;
+  border-radius: 15px;
+  margin-top: 25px;
+  margin-left: -30px;
+  margin-bottom: 50px;
+}
+
+#review-title {
+  display: flex;
+  flex-direction: column;
+  margin-top: 15px;
+}
+#review-title input {
+  width: 50%;
+  margin-top: 10px;
+  height: 30px;
+}
+.review-text {
+  width: 80%;
+  height: 100px;
+  margin-top: 15px;
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+  border-radius: 15px;
+  border: none;
+  box-shadow: 3px 3px 10px 6px rgba(0, 0, 0, 0.2);
+}
+
 .title-small {
   font-weight: bold;
 }
@@ -189,51 +260,50 @@ a:active {
   border-radius: 20px;
   margin: 10px 0px 40px 0px;
   box-shadow: 3px 3px 10px 4px rgba(0, 0, 0, 0.2);
+  color: white;
 }
 
 .list-btn a {
   color: white;
 }
 
-.carousel-inner{
-  padding:40px;
-  width:100%
+.carousel-inner {
+  padding: 40px;
+  width: 100%;
 }
 
-
-.card-title{
-font-weight: bold;
-text-align: center;
-text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3);
+.card-title {
+  font-weight: bold;
+  text-align: center;
+  text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3);
 }
 
 #each-actor p {
   font-weight: bold;
-text-align: center;
-text-shadow: 3px 3px 3px rgba(0, 0, 0, 0.3);
+  text-align: center;
+  text-shadow: 3px 3px 3px rgba(0, 0, 0, 0.3);
 }
 
-#add-list-btn{
+#add-list-btn {
   background-color: rgba(38, 37, 67, 255);
   padding: 7px 15px;
   font-size: 14px;
-  color:white;
+  color: white;
   font-weight: bold;
   border-radius: 20px;
   margin: 0px 15px;
   box-shadow: 3px 3px 10px 4px rgba(0, 0, 0, 0.2);
 }
 
-#status{
+#status {
   padding: 7px 15px;
   font-size: 14px;
-  color:black;
+  color: black;
   font-weight: bold;
   border-radius: 20px;
   margin-top: 20px;
   box-shadow: 3px 3px 10px 4px rgba(0, 0, 0, 0.2);
 }
-
 
 .each-list-show {
   display: flex;
@@ -276,12 +346,11 @@ text-shadow: 3px 3px 3px rgba(0, 0, 0, 0.3);
   font-family: Righteous;
 }
 
-.bold-title{
+.bold-title {
   font-family: Righteous;
   margin: 20px 0px;
   text-shadow: 3px 3px 3px rgba(0, 0, 0, 0.2);
-  color:rgba(38, 37, 67, 255);
-
+  color: rgba(38, 37, 67, 255);
 }
 
 [id="heart"] {
@@ -315,4 +384,47 @@ text-shadow: 3px 3px 3px rgba(0, 0, 0, 0.3);
   color: #e2264d;
   will-change: font-size;
   animation: heart 1s cubic-bezier(0.17, 0.89, 0.32, 1.49);
+}
+
+
+/* ESTRELLAS */
+div.stars {
+  width: 100%;
+  display: inline-block;
+}
+
+input.star {
+  display: none;
+}
+
+label.star {
+  float: right;
+  padding: 5px;
+  font-size: 25px;
+  color: #4a148c;
+  transition: all 0.2s;
+}
+
+input.star:checked ~ label.star:before {
+  content: "\f005";
+  color: #fd4;
+  transition: all 0.25s;
+}
+
+input.star-5:checked ~ label.star:before {
+  color: #fe7;
+  text-shadow: 0 0 20px #952;
+}
+
+input.star-1:checked ~ label.star:before {
+  color: #f62;
+}
+
+label.star:hover {
+  transform: rotate(-15deg) scale(1.3);
+}
+
+label.star:before {
+  content: "\f006";
+  font-family: FontAwesome;
 }

@@ -1,5 +1,7 @@
 const router = require("express").Router();
 const Show = require("../models/Shows.model");
+const Review = require("../models/Review.model")
+const User =require ("../models/User.model")
 const { isLoggedIn } = require("../middleware/auth");
 
 const {
@@ -10,6 +12,7 @@ const {
   getGenreName,
   getTopRated
 } = require("../services");
+const { findById } = require("../models/Shows.model");
 
 // GET "/shows" Homepage popular shows
 router.get("/", async (req, res, next) => {
@@ -26,7 +29,9 @@ router.get("/:showId/details", async (req, res, next) => {
     const showDetails = await getDetailsShowsService(showId);
     const arrData = showDetails.data;
     const actors = await getActors(showId);
-
+    const review = await Review.find({show:showId}).populate("user")
+    const adminUser = await User.find({role: "admin"})
+    console.log (adminUser)
     if (typeof req.session.user !== "undefined") {
       const currentShow = await Show.findOne({
         $and: [{ apiId: showId }, { user: req.session.user._id }],
@@ -35,13 +40,18 @@ router.get("/:showId/details", async (req, res, next) => {
         arrData,
         currentShow,
         actors: actors.data.cast.slice(0, 5),
+        review,
+        adminUser
       });
     } else {
       res.render("shows/details.hbs", {
         arrData,
         actors: actors.data.cast.slice(0, 5),
+        review,
+        adminUser
       });
     }
+
   } catch (err) {
     next(err);
   }
@@ -50,8 +60,8 @@ router.get("/:showId/details", async (req, res, next) => {
 // POST "/shows/:apId/details" tomar datos y almacenar en DB BOTON FAVORITO
 router.post("/:showId/details", isLoggedIn, async (req, res, next) => {
   const { showId } = req.params;
-  const { status, favChecked } = req.body;
-
+  const { status, favChecked, title, review, star } = req.body;
+  console.log(star)
   try {
     const showDetails = await getDetailsShowsService(showId);
     const arrData = showDetails.data;
@@ -90,7 +100,17 @@ router.post("/:showId/details", isLoggedIn, async (req, res, next) => {
         });
       }
     }
+  
 
+    if (title && review && star ) {
+      await Review.create({
+      show: showId,
+      star,
+      title,
+      review,
+      user: req.session.user._id
+    })
+  }
     res.redirect(`/shows/${showId}/details`);
   } catch (err) {
     next(err);
@@ -178,5 +198,27 @@ router.get("/:page/top-shows", async(req,res,next)=> {
  res.render("shows/top-shows.hbs", {topShows})
 
 })
+
+//POST "shows/:id/details" => write a review
+
+// router.post("/:showId/details", isLoggedIn, async (req, res, next) => {
+//   const {showId} = req.params
+//   const {title, review} = req.body
+//   console.log(req.body)
+//   try{
+//     let showFound = await Show.findOne({apiId:showId})
+//     console.log(showFound)
+//     await Review.create({
+//     show: showFound._id,
+//     title,
+//     review,
+//     user: req.session.user._id    
+//   })
+//   res.redirect(`/shows/${showId}/details`);
+// } catch (err) {
+//   next(err);
+// }
+// })
+
 
 module.exports = router;

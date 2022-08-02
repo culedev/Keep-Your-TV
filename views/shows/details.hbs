@@ -67,5 +67,111 @@
         </div>
       {{/each}}
     </div>
+  <div id="reviews">
+    {{#each review}}
+    <div id="each-review">
+      <div id="image-username">
+    <img src="{{this.user.image}}" alt="user-image" width="40"height="40" class="rounded-circle">
+    <div id="user-role">
+    <p class="review-username">{{this.user.username}}</p>
+    <p class="role">{{this.user.role}}</p>
+</div>
+    </div>
+    
+    
+
+<div class="row">
+	<div class="col-md-12">
+		<div class="stars"> 
+    <input class="star"  type="radio" disabled/>
+
+    <input class="star star-5"  type="radio" {{#if (starsSelected 5 this.star)}}checked{{/if}}/>
+    <label class="star star-5"></label>
+
+    <input class="star star-4" type="radio" {{#if (starsSelected 4 this.star)}}checked{{/if}}/>
+    <label class="star star-4"></label>
+
+    <input class="star star-3" type="radio" {{#if (starsSelected 3 this.star)}}checked{{/if}}/>
+    <label class="star star-3"></label>
+
+    <input class="star star-2" type="radio"{{#if (starsSelected 2 this.star)}}checked{{/if}}/>
+    <label class="star star-2"></label>
+
+    <input class="star star-1" type="radio" {{#if (starsSelected 1 this.star)}}checked{{/if}}/>
+    <label class="star star-1"></label>
+
+</div>
+
+	</div>
+
+</div>
+
+
+
+
+    <p class="review-title">{{this.title}}</p>
+    <p>{{this.review}}</p>
+    </div>
+{{/each}}
+
   </div>
+
+    <div id="add-review">
+      <h2>Add a review:</h2>
+
+    <form action="/shows/{{arrData.id}}/details" method="POST">  
+
+{{!-- ESTO SON ESTRELLAS --}}
+<div class="container d-flex mt-200">
+	
+
+<div class="row">
+	<div class="col-md-12">
+		<div class="stars">
+
+    <input class="star star-5" id="star-5" type="radio" name="star" value="5"/>
+    <label class="star star-5" for="star-5"></label>
+
+    <input class="star star-4" id="star-4" type="radio" name="star"value="4"/>
+    <label class="star star-4" for="star-4"></label>
+
+    <input class="star star-3" id="star-3" type="radio" name="star"value="3"/>
+    <label class="star star-3" for="star-3"></label>
+
+    <input class="star star-2" id="star-2" type="radio" name="star"value="2"/>
+    <label class="star star-2" for="star-2"></label>
+
+    <input class="star star-1" id="star-1" type="radio" name="star"value="1"/>
+    <label class="star star-1" for="star-1"></label>
+
+</div>
+
+	</div>
+
+</div>
+
+</div>
+
+    <div id="review-title">
+    <label for="title">Title</label>
+    <input type="text" name="title" />
+    </div>  
+    <br>
+    <div class="form-group">
+    <label for="review">Review</label>
+    <textarea class="review-text" id="exampleFormControlTextarea1" rows="3" name="review"></textarea>
+  </div>
+
+
+    <br>
+    <p style="background-color: red">{{error}}</p>
+
+    <button class="list-btn">Send review</button>
+
+
+    </form>
+
+  </div>
+  </div>
+
 </div>

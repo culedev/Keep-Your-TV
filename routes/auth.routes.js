@@ -66,6 +66,8 @@ router.get("/login", (req, res, next) => {
   res.render("auth/login.hbs");
 });
 
+
+//POST "/auth/login"
 router.post("/login", async (req, res, next) => {
   const { access, password } = req.body;
 
