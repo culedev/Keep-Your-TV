@@ -21,6 +21,14 @@ hbs.registerHelper("starsSelected", (value, currentStatus) => {
   return value === currentStatus;
 });
 
+hbs.registerHelper("isUser" , (userId, userSession, isAdmin) => {
+  if (userId === userSession || isAdmin) {
+    return true;
+  } else {
+    return false;
+  }
+})
+
 hbs.registerHelper("getCarImg", (arr, index, pos) => {
   let realIndex;
   let newIndex = index;
@@ -75,8 +83,6 @@ hbs.registerHelper("getCarId", (arr, index, pos) => {
   }
   return `/shows/${arr[realIndex]?.id}/details`;
 });
-
-
 
 const app = express();
 

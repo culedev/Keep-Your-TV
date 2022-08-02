@@ -1,4 +1,5 @@
 <div id="show-details">
+  {{log session.user}}
   <div id="img-and-btn">
     {{#if arrData.poster_path}}
     <img
@@ -72,6 +73,7 @@
         {{/each}}
       </div>
       <div id="reviews">
+        
       {{#each review}}
       <div id="each-review">
         <div id="image-username">
@@ -108,11 +110,23 @@
             </div>
           </div>
         </div>
-
-
-
+        {{log }}
         <p class="review-title">{{this.title}}</p>
+        
+  
         <p>{{this.review}}</p>
+        {{#if (isUser this.user.username ../this.session.user.username ../this.isUserAdmin)}}
+        
+        <form action="/shows/{{this.show}}/details/delete" method="POST">
+          <button class="btn btn-danger">DELETE</button>
+        </form>
+          {{/if}}
+          {{#if ../this.isUserAdmin}}
+          <form action="/shows/{{this.show}}/admin/delete">
+            <button class="btn btn-warning">BAN USER</button>
+          </form>
+          
+        {{/if}}
       </div>
       {{/each}}
 

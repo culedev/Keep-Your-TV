@@ -106,6 +106,7 @@ router.post("/login", async (req, res, next) => {
         role: foundUser.role,
         username: foundUser.username,
         image: foundUser.image,
+        isBanned: foundUser.isBanned,
       };
 
       req.session.save(() => {
@@ -123,4 +124,10 @@ router.get("/logout", (req, res, next) => {
     res.redirect("/auth/login")
   })
 })
+
+// GET "/auth/banned"
+router.get("/banned", (req, res, next) => {
+  res.render("auth/banned.hbs")
+})
+
 module.exports = router;

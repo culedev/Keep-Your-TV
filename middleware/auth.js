@@ -15,6 +15,14 @@ const isAdmin = (req, res, next) => {
   }
 };
 
+const isUserBan = (req,res,next) => {
+  if (req.session.user.isBanned === true) {
+    res.redirect("/auth/banned")
+  } else {
+    next();
+  }
+}
+
 const localsUpdate = (req, res, next) => {
   res.locals.session = req.session;
   if (req.session.user === undefined) {
@@ -34,4 +42,5 @@ module.exports = {
   isAdmin,
   isLoggedIn,
   localsUpdate,
+  isUserBan,
 };

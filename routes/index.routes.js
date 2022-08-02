@@ -1,6 +1,5 @@
 const router = require("express").Router();
 const { localsUpdate } = require("../middleware/auth");
-
 const { getGenreName, searchShow } = require("../services");
 
 // Continiously check if user is logged in or not

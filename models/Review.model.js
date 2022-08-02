@@ -17,7 +17,8 @@ const reviewSchema = new Schema(
       required: true,
     },
     review: {
-        type:String},
+        type:String
+      },
     user: {
       type: Schema.Types.ObjectId, // Esto sera un ID que apunta a otro documento de la DB
       ref: "User",

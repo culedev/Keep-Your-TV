@@ -26,6 +26,10 @@ const userSchema = new Schema(
     image: {
       type: String,
       default: "/images/defaultuser.jpg"
+    },
+    isBanned: {
+      type: Boolean,
+      default: false,
     }
   },
   {

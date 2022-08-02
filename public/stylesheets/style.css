@@ -137,9 +137,10 @@ a:active {
   flex-direction: column;
   margin-left: 30px;
   margin-top: 100px;
+  padding-right: 30px;
   justify-content: flex-start;
   align-items: center;
-  width: 30%;
+  width: 33%;
 }
 
 #img-and-btn img {
@@ -151,7 +152,6 @@ a:active {
 #show-details {
   display: flex;
   flex-direction: row;
-  justify-content: flex-start;
   width: 95%;
   margin-top: 15px;
 }
@@ -417,7 +417,7 @@ input.star {
 
 label.star {
   float: right;
-  padding: 5px;
+  padding: 2px;
   font-size: 25px;
   color: #4a148c;
   transition: all 0.2s;
@@ -425,17 +425,17 @@ label.star {
 
 input.star:checked ~ label.star:before {
   content: "\f005";
-  color: #fd4;
+  color: #4a148c;
   transition: all 0.25s;
 }
-
+/* #fd4 star color checked*/
 input.star-5:checked ~ label.star:before {
-  color: #fe7;
-  text-shadow: 0 0 20px #952;
+  color: #5e2a9e;
+  text-shadow: 0 0 10px #310664;
 }
 
 input.star-1:checked ~ label.star:before {
-  color: #f62;
+  color: #310664;
 }
 
 label.star:hover {

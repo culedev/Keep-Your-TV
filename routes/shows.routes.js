@@ -1,9 +1,9 @@
 const router = require("express").Router();
 const Show = require("../models/Shows.model");
-const Review = require("../models/Review.model")
-const User =require ("../models/User.model")
-const Announcement = require("../models/News.model")
-const { isLoggedIn } = require("../middleware/auth");
+const Review = require("../models/Review.model");
+const User = require("../models/User.model");
+const Announcement = require("../models/News.model");
+const { isLoggedIn, isUserBan } = require("../middleware/auth");
 const {
   getPopularShowsService,
   getDetailsShowsService,
@@ -13,18 +13,17 @@ const {
   getTopRated,
   getTrailer,
 } = require("../services");
-const { findById } = require("../models/Shows.model");
 
 // GET "/shows" Homepage popular shows
 router.get("/", async (req, res, next) => {
   try {
     const popularShow = await getPopularShowsService();
-    const announcements = await Announcement.find()
-  
+    const announcements = await Announcement.find();
+
     const arrData = popularShow.data.results;
-    res.render("shows/home.hbs", { arrData, announcements});
+    res.render("shows/home.hbs", { arrData, announcements });
   } catch (err) {
-    next(err)
+    next(err);
   }
 });
 
@@ -35,11 +34,13 @@ router.get("/:showId/details", async (req, res, next) => {
     const showDetails = await getDetailsShowsService(showId);
     const arrData = showDetails.data;
     const actors = await getActors(showId);
-    const review = await Review.find({show:showId}).populate("user")
-    const adminUser = await User.find({role: "admin"})
+    const review = await Review.find({ show: showId }).populate("user");
+    const adminUser = await User.find({ role: "admin" });
     const trailer = await getTrailer(showId);
-    const firstTrailer = trailer.data.results.find(trailerObj => trailerObj.type === "Trailer")
-    
+    const firstTrailer = trailer.data.results.find(
+      (trailerObj) => trailerObj.type === "Trailer"
+    );
+
     if (typeof req.session.user !== "undefined") {
       const currentShow = await Show.findOne({
         $and: [{ apiId: showId }, { user: req.session.user._id }],
@@ -56,7 +57,7 @@ router.get("/:showId/details", async (req, res, next) => {
       res.render("shows/details.hbs", {
         arrData,
         actors: actors.data.cast.slice(0, 5),
-        review, 
+        review,
       });
     }
   } catch (err) {
@@ -65,7 +66,7 @@ router.get("/:showId/details", async (req, res, next) => {
 });
 
 // POST "/shows/:apId/details" tomar datos y almacenar en DB BOTON FAVORITO
-router.post("/:showId/details", isLoggedIn, async (req, res, next) => {
+router.post("/:showId/details", isLoggedIn, isUserBan, async (req, res, next) => {
   const { showId } = req.params;
   const { status, favChecked, title, review, star } = req.body;
   try {
@@ -109,17 +110,16 @@ router.post("/:showId/details", isLoggedIn, async (req, res, next) => {
     }
 
     // REVIEW + STARS
-    if (title && review && star ) {
+    if (title && review && star) {
       await Review.create({
-      show: showId,
-      star,
-      title,
-      review,
-      user: req.session.user._id
-    })
-  } 
-  res.redirect(`/shows/${showId}/details`);
-
+        show: showId,
+        star,
+        title,
+        review,
+        user: req.session.user._id,
+      });
+    }
+    res.redirect(`/shows/${showId}/details`);
   } catch (err) {
     next(err);
   }
@@ -137,7 +137,6 @@ router.get("/:page/genre/:genreId", async (req, res, next) => {
     );
 
     genre.data.results.forEach((show) => {
-      
       const goodArr = show.genre_ids.map((id) => {
         let names = genreList.data.genres.find((idList) => {
           if (id === idList.id) {
@@ -147,7 +146,7 @@ router.get("/:page/genre/:genreId", async (req, res, next) => {
 
         return names;
       });
-      show.newList = goodArr
+      show.newList = goodArr;
     });
     res.render("shows/shows-by-genre.hbs", {
       genre: genre.data.results,
@@ -159,13 +158,12 @@ router.get("/:page/genre/:genreId", async (req, res, next) => {
 });
 
 // GET POPULAR SHOWS "/shows/popular-shows"
-router.get("/:page/popular-shows",  async(req,res,next) => {
-  const {page} = req.params
+router.get("/:page/popular-shows", async (req, res, next) => {
+  const { page } = req.params;
   const popularShow = await getPopularShowsService(page);
   const genreList = await getGenreName();
 
   popularShow.data.results.forEach((show) => {
-      
     const goodArr = show.genre_ids.map((id) => {
       let names = genreList.data.genres.find((idList) => {
         if (id === idList.id) {
@@ -175,36 +173,46 @@ router.get("/:page/popular-shows",  async(req,res,next) => {
 
       return names;
     });
-    show.newList = goodArr
+    show.newList = goodArr;
   });
 
   const arrData = popularShow.data.results;
   res.render("shows/popular-shows.hbs", { arrData });
-
-})
+});
 
 // GET TOP SHOWS "/shows/top-shows"
-router.get("/:page/top-shows", async(req,res,next)=> {
- const {page} = req.params
- const topRatedShows = await getTopRated(page)
- const genreList = await getGenreName();
+router.get("/:page/top-shows", async (req, res, next) => {
+  const { page } = req.params;
+  const topRatedShows = await getTopRated(page);
+  const genreList = await getGenreName();
 
- topRatedShows.data.results.forEach((show) => {
-     
-   const goodArr = show.genre_ids.map((id) => {
-     let names = genreList.data.genres.find((idList) => {
-       if (id === idList.id) {
-         return idList.name;
-       }
-     });
+  topRatedShows.data.results.forEach((show) => {
+    const goodArr = show.genre_ids.map((id) => {
+      let names = genreList.data.genres.find((idList) => {
+        if (id === idList.id) {
+          return idList.name;
+        }
+      });
 
-     return names;
-   });
-   show.newList = goodArr
- });
- const topShows = topRatedShows.data.results
- res.render("shows/top-shows.hbs", {topShows})
+      return names;
+    });
+    show.newList = goodArr;
+  });
+  const topShows = topRatedShows.data.results;
+  res.render("shows/top-shows.hbs", { topShows });
+});
 
-})
+// POST "/shows/:showId/details/delete"
+router.post("/:showId/details/delete", isLoggedIn, async (req, res, next) => {
+  const { showId } = req.params;
+  try {
+    await Review.findOneAndDelete({
+      $and: [{ user: req.session.user._id }, { show: showId }],
+    });
+    res.redirect(`/shows/${showId}/details`);
+  } catch (err) {
+    next(err);
+  }
+});
 
 module.exports = router;
