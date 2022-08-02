@@ -1,5 +1,16 @@
 <h2 class="bold-title">Search results</h2>
 <div class="shows">
+
+    {{#if showUser}}
+        {{#each showUser}}
+        <div class="each-show">
+            <img src="{{this.image}}" alt="{{this.username}}" width="200px" height="300">
+            <div class="show-data">
+                <h1>User: {{this.username}}</h1>
+            </div>
+        </div>
+        {{/each}}
+    {{/if}}
 {{#each showFound}}
 <div class="each-show">
     {{#if this.poster_path}}

@@ -1,5 +1,6 @@
 const router = require("express").Router();
 const { localsUpdate } = require("../middleware/auth");
+const User = require("../models/User.model")
 const { getGenreName, searchShow } = require("../services");
 
 // Continiously check if user is logged in or not
@@ -18,6 +19,8 @@ router.get("/shows-search", async (req, res, next) => {
   }
   try {
     const showFound = await searchShow(search);
+    const showUser = await User.find({username: {$regex: search}})
+
     if (showFound.data.total_results === 0) {
       res.render("shows/no-results");
     } else {
@@ -37,6 +40,7 @@ router.get("/shows-search", async (req, res, next) => {
       });
       res.render("shows/shows-search-results.hbs", {
         showFound: showFound.data.results,
+        showUser,
       });
     }
   } catch (err) {

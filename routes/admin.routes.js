@@ -1,6 +1,7 @@
 const router = require("express").Router();
-const Announcement = require("../models/News.model")
+const Announcement = require("../models/News.model");
 const uploader = require("../middleware/uploader");
+const User = require("../models/User.model")
 const { isAdmin } = require("../middleware/auth");
 
 // GET "/admin"
@@ -14,16 +15,33 @@ router.get("/news", isAdmin, (req, res, next) => {
 });
 
 // POST "/admin/news"
-router.post("/news", isAdmin, uploader.single("image"), async (req,res,next) => {
-    const {title, url} = req.body
+router.post(
+  "/news",
+  isAdmin,
+  uploader.single("image"),
+  async (req, res, next) => {
+    const { title, url } = req.body;
 
     try {
-        await Announcement.create({title, image: req.file.path, url})
-        res.redirect("/admin/news")
+      await Announcement.create({ title, image: req.file.path, url });
+      res.redirect("/admin/news");
     } catch (err) {
-        next(err)
+      next(err);
     }
-})
+  }
+);
 
+// GET "/admin/listbanned"
+router.get("/listbanned", async (req, res, next) => {
+  try {
+    const bannedUser = await User.find({ isBanned: true });
+    console.log(bannedUser);
+    res.render("admin/listbanned.hbs", {
+      bannedUser,
+    })
+  } catch (err) {
+    next(err);
+  }
+});
 
 module.exports = router;

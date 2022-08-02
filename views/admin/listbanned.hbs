@@ -1,0 +1,10 @@
+<h1>Banned Users</h1>
+<div class="banned-user">
+{{#each bannedUser}}
+    <div>
+        <img src="{{this.image}}" alt="{{this.username}}">
+        <p>{{this.username}}</p>
+        <p>{{this.email}}</p>
+    </div>
+{{/each}}
+</div>
