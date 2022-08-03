@@ -108,7 +108,7 @@ router.get ("/friends-list", isLoggedIn, async(req,res,next)=> {
   try {
     const user= await User.findById(req.session.user._id).populate("friends", {"username":1 , "role":1, "image":1})
     res.render("profile/lists/friends-list.hbs", {
-      friends:user.friends,
+      friends: user.friends,
     })
   } catch (err) {
     next(err);
@@ -124,7 +124,7 @@ const {userId} = req.params
     const userAdded = await User.findById(userId)
     const userLogged = await User.findById(req.session.user._id)
 
-    await User.findByIdAndUpdate(userLogged._id, {$addToSet: {friends: userAdded._id}},);
+    await User.findByIdAndUpdate(userLogged._id, {$addToSet: {friends: userAdded._id}});
     
 
       res.redirect("/profile/friends-list");
