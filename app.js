@@ -27,7 +27,7 @@ hbs.registerHelper("isUser", (userId, userSession, isAdmin) => {
   } else {
     return false;
   }
-});
+})
 
 hbs.registerHelper("getCarImg", (arr, index, pos) => {
   let realIndex;
