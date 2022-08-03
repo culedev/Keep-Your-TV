@@ -108,9 +108,19 @@ const {userId} = req.params
 
   try {
     const userAdded = await User.findById(userId)
+    const userLogged = await User.findById(req.session.user._id)
+    //console.log(userLogged)
+    // console.log(userId)
+    // //console.log(userAdded._id.valueOf())
+    // const isFriend = userLogged.friends.find((eachFriend)=>{
+    //    return eachFriend._id === userAdded._id    
+    // })
+    
+    // console.log(isFriend)
 
-    User.findByIdAndUpdate({_id: req.session.user._id}, {$push: {friends: userAdded}},).exec();
 
+    await User.findByIdAndUpdate(userLogged._id, {$addToSet: {friends: userAdded}},).exec();
+    
     req.session.save(() => {
       res.redirect("/profile/friends-list");
     })
@@ -123,10 +133,12 @@ const {userId} = req.params
 //GET "/profile/friends-list" =>lista de amigos
 
 router.get ("/friends-list", isLoggedIn, async(req,res,next)=> {
+  
   try {
-    console.log(req.session.user.friends)
+    const user= await User.findById(req.session.user._id)
+    //console.log(user.friends)
     res.render("profile/lists/friends-list.hbs", {
-      friends:req.session.user.friends,
+      friends:user.friends,
     })
   } catch (err) {
     next(err);

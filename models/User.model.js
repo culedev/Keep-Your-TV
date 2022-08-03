@@ -31,7 +31,7 @@ const userSchema = new Schema(
       type: Boolean,
       default: false,
     },
-    friends:[Array]
+    friends:Array
   },
   {
     // this second object adds extra properties: `createdAt` and `updatedAt`

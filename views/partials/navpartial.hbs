@@ -96,10 +96,12 @@
             class="rounded-circle"
           />
         </a>
+
        <ul class="dropdown-menu">
-        
+            <li class="username-dropdown"><p>{{session.user.username}}</p></li>
             <li><a class="dropdown-item" href="/profile">My profile</a></li>
             <li><a class="dropdown-item" href="/profile/lists">My lists</a></li>
+            <li><a class="dropdown-item" href="/profile/friends-list">My friends</a></li>
             {{#if isUserAdmin}}
             <li><a class="dropdown-item" href="/admin">Admin Panel</a></li>
             {{/if}}
