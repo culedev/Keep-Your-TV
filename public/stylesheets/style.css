@@ -102,6 +102,25 @@ h1 {
   color: 15px;
 }
 
+#friends-list{
+  display:flex;
+  flex-direction: row;
+
+}
+
+#each-friend{
+display:flex;
+flex-direction: column;
+align-items: center;
+margin:10px
+}
+
+#each-friend img{
+  width:150px;
+  height:150px;
+  border-radius: 150px;;
+  }
+
 .shows {
   display: flex;
   flex-direction: column;

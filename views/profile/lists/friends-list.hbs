@@ -1,6 +1,13 @@
-<h1>Mis amigos</h1>
 
+
+<h1 class="bold-title">Friends</h1>
+<div id="friends-list">
 {{#each friends}}
+<div id="each-friend">
+<img src="{{this.image}}" alt="profile-picture" width="200">
 <p>{{this.username}}</p>
-<img src="{{this.image}}" alt="" width="200">
+<p>{{this.role}}</p>
+</div>
 {{/each}}
+
+</div>
