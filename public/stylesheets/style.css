@@ -21,10 +21,54 @@ body {
   height: 100%;
   box-sizing: border-box;
 }
+/* Background animation */
+#gradient-background {
+  height: 100vh;
+  width: 100vw;
+  background: linear-gradient(62deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+  animation: gradient 15s ease infinite;
+  background-size: 400% 400%;
+  position: absolute;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-family: Righteous;
+  color: white;
+  font-size: 42px;
+}
+
+@-webkit-keyframes gradient {
+  0% {
+    background-position: 0 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+@keyframes gradient {
+  0% {
+    background-position: 0 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+#gradient-background .navbar{
+  display: none;
+  visibility: hidden;
+}
 
 #body-page {
   width: 100%;
-
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -156,10 +200,10 @@ a:active {
 #img-and-btn {
   display: flex;
   flex-direction: column;
+  align-items: center;
   margin-left: 30px;
-  margin-top: 55px;
-  margin-right: 10px;
-  width: 100%;
+  margin-top: 100px;
+  width: 33%;
 }
 
 #img-and-btn img {
@@ -371,8 +415,8 @@ a:active {
 
 #news {
   background-color: #24243e;
-  width: 70%;
-  height: 600px;
+  width: 1000px;
+  height: 650px;
   margin: 40px;
   font-family: Righteous;
   border-radius: 10px;
@@ -480,8 +524,8 @@ label.star:before {
   font-family: FontAwesome;
 }
 .carouselimg {
-  width: 600px;
-  height: 500px;
+  width: 1000px;
+  height: 550px;
   border-radius: 10px;
  
 }
@@ -591,5 +635,5 @@ text-align: center;
 }
 
 #news-admin input{
-  border-radius: 10px;;
+  border-radius: 10px;
 }
