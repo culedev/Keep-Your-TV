@@ -13,10 +13,6 @@ const {
   getTopRated,
   getTrailer,
 } = require("../services");
-const {
-  findByIdAndUpdate,
-  findOneAndUpdate,
-} = require("../models/Shows.model");
 
 // GET "/shows" Homepage popular shows
 router.get("/", async (req, res, next) => {

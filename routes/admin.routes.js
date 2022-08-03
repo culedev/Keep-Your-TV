@@ -32,7 +32,7 @@ router.post(
 );
 
 // GET "/admin/listbanned"
-router.get("/listbanned", async (req, res, next) => {
+router.get("/listbanned", isAdmin, async (req, res, next) => {
   try {
     const bannedUser = await User.find({ isBanned: true });
     res.render("admin/listbanned.hbs", {

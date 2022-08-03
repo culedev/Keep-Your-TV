@@ -179,8 +179,8 @@
 
       <br>
       <p style="background-color: red">{{error}}</p>
-
-      <button class="list-btn">Send review</button>
+      
+      <button class="list-btn"{{#if session.user.isBanned}}disabled>You're Banned{{else}}Send review{{/if}}</button>
 
 
       </form>
