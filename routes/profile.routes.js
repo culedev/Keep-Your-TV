@@ -108,7 +108,7 @@ router.get ("/friends-list", isLoggedIn, async(req,res,next)=> {
   try {
     const user= await User.findById(req.session.user._id).populate("friends", {"username":1 , "role":1, "image":1})
     res.render("profile/lists/friends-list.hbs", {
-      friends:user.friends,
+      friends: user.friends,
     })
   } catch (err) {
     next(err);
@@ -124,7 +124,7 @@ const {userId} = req.params
     const userAdded = await User.findById(userId)
     const userLogged = await User.findById(req.session.user._id)
 
-    await User.findByIdAndUpdate(userLogged._id, {$addToSet: {friends: userAdded._id}},);
+    await User.findByIdAndUpdate(userLogged._id, {$addToSet: {friends: userAdded._id}});
     
     req.session.save(() => {
       res.redirect("/profile/friends-list");
@@ -133,27 +133,5 @@ const {userId} = req.params
     next(err)
   }
 })
-
-//POST "profile/:userId/delete"
-// router.post("/:userId/delete", isLoggedIn, async (req, res, next)=> {
-//   const {userId} = req.params
-  
-//     try {
-//       const userAdded = await User.findById(userId)
-//       const userLogged = await User.findById(req.session.user._id)
-  
-//       await User.findByIdAndUpdate(userLogged._id, {$pull: {friends: userAdded._id}},);
-      
-//       req.session.save(() => {
-//         res.redirect("/profile/friends-list");
-//       })
-//       res.redirect("/profile/friends-list");
-//     } catch (err) {
-//       next(err)
-//     }
-//   })
-
-
-
 
 module.exports = router;

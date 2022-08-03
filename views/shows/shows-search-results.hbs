@@ -2,6 +2,7 @@
 <div class="shows">
 
     {{#if showUser}}
+    
         {{#each showUser}}
         <div class="each-show">
             <div id="user-image">
@@ -9,17 +10,10 @@
             </div>
             <div class="show-data">
                 <h2>{{this.username}}</h2>
-                <h5>{{this.role}} </h5>
-                {{log ../this.session.user._id}}
-                {{#if (isFriend this._id ../this.session.user._id)}}
+                <h5>{{this.role}} </h5>                              
                 <form action="/profile/{{this._id}}/add-friend" method="POST">
                     <button class="btn btn-success">Add friend</button>
-                </form>
-                {{else}}
-                {{!-- <form action="/profile/{{this._id}}/delete" method="POST">
-                    <button class="btn btn-warning">Delete Friend</button>
-                </form> --}}
-                {{/if}}
+                </form> 
             </div>           
         </div>
         {{/each}}
