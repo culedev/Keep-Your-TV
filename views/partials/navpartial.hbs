@@ -24,7 +24,7 @@
             data-bs-toggle="dropdown"
             aria-expanded="false"
           >
-            TV Shows
+            Shows by Genre
           </a>
           <ul class="dropdown-menu">
             <li><a class="dropdown-item" href="/shows/1/genre/10759">Action &
@@ -78,9 +78,31 @@
         <button class="btn btn-outline-success" type="submit">Search</button>
       </form>
       </div>
-      
+
       {{#if isUserActive}}
-       <ul class="navbar-nav d-flex">
+        {{log session.user}}
+        <ul class="navbar-nav">
+          <li class="nav-item dropdown">
+            <a
+              class="nav-link dropdown-toggle"
+              href=""
+              role="button"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
+              Friends List
+            </a>
+        
+       <ul class="dropdown-menu">
+        {{#each session.user.friends}}
+             <li class="d-flex p-3">
+                <img src="{{this.image}}" alt="{{this.username}}" width="40" height="40" class="rounded-circle">
+                <a class="dropdown-item" href="#">{{this.username}}</a>
+              </li>
+          {{/each}}
+      </ul>
+      </ul>
+       <ul class="navbar-nav ">
         <li class="nav-item dropdown">
           <a
             class="nav-link dropdown-toggle"
@@ -95,7 +117,7 @@
             height="40"
             class="rounded-circle"
           />
-        </a>
+          </a>
 
        <ul class="dropdown-menu">
             <li class="username-dropdown"><p>{{session.user.username}}</p></li>
@@ -111,6 +133,7 @@
         <a href="/auth/signup"><button class="btn btn-outline">Sign up</button></a>
         <a href="/auth/login"><button class="btn btn-outline">Log in</button></a>
       {{/if}}
+
     </div>
   </div>
 </nav>

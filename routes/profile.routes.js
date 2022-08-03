@@ -109,15 +109,6 @@ const {userId} = req.params
   try {
     const userAdded = await User.findById(userId)
     const userLogged = await User.findById(req.session.user._id)
-    //console.log(userLogged)
-    // console.log(userId)
-    // //console.log(userAdded._id.valueOf())
-    // const isFriend = userLogged.friends.find((eachFriend)=>{
-    //    return eachFriend._id === userAdded._id    
-    // })
-    
-    // console.log(isFriend)
-
 
     await User.findByIdAndUpdate(userLogged._id, {$addToSet: {friends: userAdded._id}},);
     

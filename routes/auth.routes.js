@@ -106,7 +106,7 @@ router.post("/login", async (req, res, next) => {
         username: foundUser.username,
         image: foundUser.image,
         isBanned: foundUser.isBanned,
-        friends:[],
+        friends: foundUser.friends,
       };
 
       req.session.save(() => {
