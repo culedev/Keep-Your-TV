@@ -1,17 +1,15 @@
-
-
 <h1 class="bold-title">Friends</h1>
 <div id="friends-list">
-{{#each friends}}
-<div id="each-friend">
-<img src="{{this.image}}" alt="profile-picture" width="200">
-<h4>{{this.username}}</h4>
-<p>{{this.role}}</p>
-<form action="/profile/{{this._id}}/delete-friend" method="POST">
-<button class="btn btn-danger">DELETE FRIEND</button>
-</form>
-</div>
+  {{#each friends}}
+    <div id="each-friend">
+      <img src="{{this.image}}" alt="profile-picture" width="200" />
+      <h4>{{this.username}}</h4>
+      <p>{{this.role}}</p>
+      <form action="/profile/{{this._id}}/delete-friend" method="POST">
+        <button class="btn btn-danger">DELETE</button>
+      </form>
+    </div>
 
-{{/each}}
+  {{/each}}
 
 </div>

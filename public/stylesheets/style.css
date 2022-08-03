@@ -121,6 +121,12 @@ h1 {
   border-radius: 150px;
 }
 
+#each-friend button {
+  border-radius: 10px;
+  font-size: bold;
+  padding: 5px 10px;
+}
+
 #each-friend h4 {
   margin-top: 5px;
   margin-bottom: 0px;
