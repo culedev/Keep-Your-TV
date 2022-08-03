@@ -102,12 +102,12 @@ h1 {
   color: 15px;
 }
 
-#friends-list {
+.friends-list {
   display: flex;
   flex-direction: row;
 }
 
-#each-friend {
+.each-friend {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -115,19 +115,19 @@ h1 {
   flex-wrap: wrap;
 }
 
-#each-friend img {
+.each-friend img {
   width: 150px;
   height: 150px;
   border-radius: 150px;
 }
 
-#each-friend button {
+.each-friend button {
   border-radius: 10px;
   font-size: bold;
   padding: 5px 10px;
 }
 
-#each-friend h4 {
+.each-friend h4 {
   margin-top: 5px;
   margin-bottom: 0px;
 }

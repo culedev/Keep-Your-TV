@@ -43,4 +43,17 @@ router.get("/listbanned", async (req, res, next) => {
   }
 });
 
+
+//POST "/admin/{{this._id}}/unbanned" 
+router.post("/:userId/unban", isAdmin, async (req, res, next) => {
+  const {userId } = req.params;
+  try {
+    await User.findByIdAndUpdate(userId, { isBanned: false });
+
+    res.redirect(`/admin/listbanned`);
+  } catch (err) {
+    next(err);
+  }
+});
+
 module.exports = router;

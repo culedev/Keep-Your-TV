@@ -1,10 +1,13 @@
 <h1 class="bold-title">Banned Users</h1>
-<div class="banned-user">
+<div class="friends-list">
 {{#each bannedUser}}
-    <div>
+    <div class="each-friend">
         <img src="{{this.image}}" alt="{{this.username}}">
         <p>{{this.username}}</p>
         <p>{{this.email}}</p>
+        <form action="/admin/{{this._id}}/unban" method="POST">
+        <button class="btn btn-danger">UNBAN</button>
+      </form>
     </div>
 {{/each}}
 </div>
