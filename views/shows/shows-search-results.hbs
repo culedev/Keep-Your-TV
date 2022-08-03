@@ -2,23 +2,28 @@
 <div class="shows">
 
     {{#if showUser}}
-    
+    <hr width="80%" style="height: 5px;color: #280157; border-radius: 5px">
+        <h3 class="bold-title"> Users</h3>
+     
         {{#each showUser}}
-        <div class="each-show">
-            <div id="user-image">
+        <div class="each-show d-flex flex-row" >
+            <div id="user-image" style="position: absolute">
             <img src="{{this.image}}" alt="{{this.username}}">
             </div>
             
-            <div class="show-data">
+            <div class="show-data ms-5 mt-3 d-flex align-items-end" style="border-radius: 50px 15px 15px 50px; width: 30%">
                 <h2>{{this.username}}</h2>
                 <h5>{{this.role}} </h5>
                 <form action="/profile/{{this._id}}/add-friend" method="POST">
-                    <button class="btn btn-success">Add friend</button>
+                    <button class="btn btn-success" style="display: inline-block; text-align:center; width: 100px">Add friend</button>
                 </form>
             </div>           
         </div>
         {{/each}}
+    
     {{/if}}
+    <hr width="80%" style="height: 5px;color: #280157; border-radius: 5px">
+    <h3 class="bold-title">TV Shows</h3>
 {{#each showFound}}
 <div class="each-show">
     {{#if this.poster_path}}
