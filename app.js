@@ -29,10 +29,6 @@ hbs.registerHelper("isUser" , (userId, userSession, isAdmin) => {
   }
 })
 
-hbs.registerHelper("isFriend", (user1, user2) => {
-  return user1 == user2
-})
-
 hbs.registerHelper("getCarImg", (arr, index, pos) => {
   let realIndex;
   let newIndex = index;

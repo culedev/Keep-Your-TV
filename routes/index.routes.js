@@ -21,6 +21,7 @@ router.get("/shows-search", async (req, res, next) => {
     const showFound = await searchShow(search);
     const showUser = await User.find({username: {$regex: search}})
 
+
     if (showFound.data.total_results === 0) {
       res.render("shows/no-results");
     } else {

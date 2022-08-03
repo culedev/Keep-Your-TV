@@ -5,9 +5,13 @@
 {{#each friends}}
 <div id="each-friend">
 <img src="{{this.image}}" alt="profile-picture" width="200">
-<p>{{this.username}}</p>
+<h4>{{this.username}}</h4>
 <p>{{this.role}}</p>
+<form action="/profile/{{this._id}}/delete-friend" method="POST">
+<button class="btn btn-danger">DELETE FRIEND</button>
+</form>
 </div>
+
 {{/each}}
 
 </div>

@@ -126,32 +126,34 @@ const {userId} = req.params
 
     await User.findByIdAndUpdate(userLogged._id, {$addToSet: {friends: userAdded._id}},);
     
-    req.session.save(() => {
+
       res.redirect("/profile/friends-list");
-    })
+
   } catch (err) {
     next(err)
   }
 })
 
-//POST "profile/:userId/delete"
-// router.post("/:userId/delete", isLoggedIn, async (req, res, next)=> {
-//   const {userId} = req.params
-  
-//     try {
-//       const userAdded = await User.findById(userId)
-//       const userLogged = await User.findById(req.session.user._id)
-  
-//       await User.findByIdAndUpdate(userLogged._id, {$pull: {friends: userAdded._id}},);
+//POST "profile/:userId/delete-friend"
+ router.post("/:userId/delete-friend", isLoggedIn, async (req, res, next)=> {
+   const {userId} = req.params
+   console.log(userId)
+   console.log(req.session.user._id)
+     try {
+       const friendToDelete = await User.findById(userId)
+       const userLogged = await User.findById(req.session.user._id)
       
-//       req.session.save(() => {
-//         res.redirect("/profile/friends-list");
-//       })
-//       res.redirect("/profile/friends-list");
-//     } catch (err) {
-//       next(err)
-//     }
-//   })
+       await User.findByIdAndUpdate(userLogged, {$pull: {friends: friendToDelete._id}},);
+        console.log(userLogged)
+        console.log(friendToDelete)
+        
+ 
+         res.redirect("/profile/friends-list");
+
+     } catch (err) {
+       next(err)
+     }
+   })
 
 
 
