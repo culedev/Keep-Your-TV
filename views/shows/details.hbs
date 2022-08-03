@@ -145,19 +145,19 @@
         <div class="col-md-12">
           <div class="stars">
 
-          <input class="star star-5" id="star-5" type="radio" name="star" value="5"/>
+          <input class="star star-5" id="star-5" type="radio" name="star" value="5" {{#if session.user.isBanned}}disabled{{/if}}/>
           <label class="star star-5" for="star-5"></label>
 
-          <input class="star star-4" id="star-4" type="radio" name="star"value="4"/>
+          <input class="star star-4" id="star-4" type="radio" name="star"value="4" {{#if session.user.isBanned}}disabled{{/if}}/>
           <label class="star star-4" for="star-4"></label>
 
-          <input class="star star-3" id="star-3" type="radio" name="star"value="3"/>
+          <input class="star star-3" id="star-3" type="radio" name="star"value="3" {{#if session.user.isBanned}}disabled{{/if}}/>
           <label class="star star-3" for="star-3"></label>
 
-          <input class="star star-2" id="star-2" type="radio" name="star"value="2"/>
+          <input class="star star-2" id="star-2" type="radio" name="star"value="2" {{#if session.user.isBanned}}disabled{{/if}}/>
           <label class="star star-2" for="star-2"></label>
 
-          <input class="star star-1" id="star-1" type="radio" name="star"value="1"/>
+          <input class="star star-1" id="star-1" type="radio" name="star"value="1" {{#if session.user.isBanned}}disabled{{/if}}/>
           <label class="star star-1" for="star-1"></label>
 
           </div>
@@ -168,21 +168,20 @@
 
       <div id="review-title">
         <label for="title">Title</label>
-        <input type="text" name="title" required="true"/>
+        <input type="text" name="title" required="true" {{#if session.user.isBanned}}disabled{{/if}}/>
       </div>  
       <br>
       <div class="form-group">
         <label for="review">Review</label>
-        <textarea class="review-text" id="exampleFormControlTextarea1" rows="3" name="review"></textarea>
+        <textarea class="review-text" id="exampleFormControlTextarea1" rows="3" name="review"{{#if session.user.isBanned}}disabled{{/if}}></textarea>
       </div>
 
 
       <br>
       <p style="background-color: red">{{error}}</p>
       
-      <button class="list-btn"{{#if session.user.isBanned}}disabled>You're Banned{{else}}Send review{{/if}}</button>
-
-
+      <button class="list-btn"{{#if session.user.isBanned}}disabled{{/if}}>Send review</button>
+      {{#if session.user.isBanned}} <h4>You're Banned</h4> {{/if}}
       </form>
 
     </div>

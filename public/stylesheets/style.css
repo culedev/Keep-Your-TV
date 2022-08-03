@@ -212,8 +212,6 @@ a:active {
   padding: 20px;
   border-radius: 15px;
   margin-bottom: 40px;
-  margin-right:40px;
-
 }
 
 #each-actor {
@@ -235,7 +233,7 @@ a:active {
   align-items: center;
   margin-left: 30px;
   margin-top: 60px;
-  width:100%;
+  width: 40rem;
 }
 
 #img-and-btn img {
