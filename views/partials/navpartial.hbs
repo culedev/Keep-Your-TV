@@ -80,28 +80,6 @@
       </div>
 
       {{#if isUserActive}}
-        {{log session.user}}
-        <ul class="navbar-nav">
-          <li class="nav-item dropdown">
-            <a
-              class="nav-link dropdown-toggle"
-              href=""
-              role="button"
-              data-bs-toggle="dropdown"
-              aria-expanded="false"
-            >
-              Friends List
-            </a>
-        
-       <ul class="dropdown-menu">
-        {{#each session.user.friends}}
-             <li class="d-flex p-3">
-                <img src="{{this.image}}" alt="{{this.username}}" width="40" height="40" class="rounded-circle">
-                <a class="dropdown-item" href="#">{{this.username}}</a>
-              </li>
-          {{/each}}
-      </ul>
-      </ul>
        <ul class="navbar-nav ">
         <li class="nav-item dropdown">
           <a

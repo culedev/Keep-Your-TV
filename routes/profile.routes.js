@@ -101,8 +101,22 @@ router.post("/update", isLoggedIn, uploader.single("image"), async (req, res, ne
   }
 });
 
+//GET "/profile/friends-list" =>lista de amigos
 
-//POST "/profile/{{this._id}}/add-friend => Add friend
+router.get ("/friends-list", isLoggedIn, async(req,res,next)=> {
+  
+  try {
+    const user= await User.findById(req.session.user._id).populate("friends", {"username":1 , "role":1, "image":1})
+    res.render("profile/lists/friends-list.hbs", {
+      friends:user.friends,
+    })
+  } catch (err) {
+    next(err);
+  }
+
+})
+
+//POST "/profile/:userId/add-friend => Add friend
 router.post("/:userId/add-friend", isLoggedIn, async (req, res, next)=> {
 const {userId} = req.params
 
@@ -120,21 +134,26 @@ const {userId} = req.params
   }
 })
 
-
-//GET "/profile/friends-list" =>lista de amigos
-
-router.get ("/friends-list", isLoggedIn, async(req,res,next)=> {
+//POST "profile/:userId/delete"
+// router.post("/:userId/delete", isLoggedIn, async (req, res, next)=> {
+//   const {userId} = req.params
   
-  try {
-    const user= await User.findById(req.session.user._id).populate("friends", {"username":1 , "role":1, "image":1})
-    res.render("profile/lists/friends-list.hbs", {
-      friends:user.friends,
-    })
-  } catch (err) {
-    next(err);
-  }
+//     try {
+//       const userAdded = await User.findById(userId)
+//       const userLogged = await User.findById(req.session.user._id)
+  
+//       await User.findByIdAndUpdate(userLogged._id, {$pull: {friends: userAdded._id}},);
+      
+//       req.session.save(() => {
+//         res.redirect("/profile/friends-list");
+//       })
+//       res.redirect("/profile/friends-list");
+//     } catch (err) {
+//       next(err)
+//     }
+//   })
 
-})
+
 
 
 module.exports = router;
