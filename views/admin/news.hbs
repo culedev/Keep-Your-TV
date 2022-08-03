@@ -1,27 +1,42 @@
 <div id="news-admin">
-<h1 class="bold-title">News Section</h1>
-<h3>Fill the form to add a New</h3>
+  <h1 class="bold-title">News Section</h1>
+  <h3>Fill the form to add a New</h3>
 
-<form action="/admin/news" method="POST" enctype="multipart/form-data">
+  <form action="/admin/news" method="POST" enctype="multipart/form-data">
 
+    <div class="mb-3">
+      <label for="title" class="form-label">Title</label>
+      <input
+        type="text"
+        name="title"
+        class="form-control"
+        id="exampleFormControlInput1"
+      />
+    </div>
+    <br />
+    <div class="mb-3">
+      <label for="url" class="form-label">URL:</label>
+      <input
+        type="text"
+        name="url"
+        class="form-control"
+        id="exampleFormControlInput1"
+      />
+    </div>
+    <br />
+    <div class="mb-3">
+      <label for="image" class="form-label"></label>
+      <input
+        class="form-control"
+        name="image"
+        type="file"
+        id="formFile"
+        style="background-color: lightgray;"
+      />
+    </div>
+    <br />
+    <button class="list-btn">Add New</button>
 
-<div class="mb-3">
-  <label for="title" class="form-label">Title</label>
-  <input type="text" name="title" class="form-control" id="exampleFormControlInput1">
-</div>
-<br>
-<div class="mb-3">
-  <label for="url" class="form-label">URL:</label>
-  <input type="text" name="url" class="form-control" id="exampleFormControlInput1">
-</div>
-<br>
-<div class="mb-3">
-  <label for="image" class="form-label"></label>
-  <input class="form-control" name="image" type="file" id="formFile" style="background-color: lightgray;">
-</div>
-<br>
-<button type="button" class="list-btn">Add New</button>
-
-</form>
+  </form>
 
 </div>
