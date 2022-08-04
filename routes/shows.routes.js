@@ -30,6 +30,7 @@ router.get("/", async (req, res, next) => {
 // GET "/shows/:apiId/details"
 router.get("/:showId/details", async (req, res, next) => {
   const { showId } = req.params;
+  const {add} = req.query
   try {
     const showDetails = await getDetailsShowsService(showId);
     const arrData = showDetails.data;
@@ -52,6 +53,7 @@ router.get("/:showId/details", async (req, res, next) => {
         review,
         adminUser,
         firstTrailer,
+        add,
       });
     } else {
       res.render("shows/details.hbs", {
@@ -90,6 +92,7 @@ router.post(
             currentShow,
             actors: actors.data.cast.slice(0, 5),
             error: "You have to select a valid status",
+            
           });
           return;
         }
@@ -123,7 +126,7 @@ router.post(
           user: req.session.user._id,
         });
       }
-      res.redirect(`/shows/${showId}/details`);
+      res.redirect(`/shows/${showId}/details?add=true`);
     } catch (err) {
       next(err);
     }
