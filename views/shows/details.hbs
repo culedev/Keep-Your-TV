@@ -149,8 +149,8 @@
         <p>{{#if this.user.isBanned}} <s> {{this.review}} </s>{{else}} {{this.review}} {{/if}}</p>
         {{#if (isUser this.user.username ../this.session.user.username ../this.isUserAdmin)}}
         
-      
-        <form action="/shows/{{this.show}}/details/delete" method="POST">
+        {{log this}}
+        <form action="/shows/{{this.show}}/{{this._id}}/details/delete" method="POST">
           <button class="btn btn-danger delete-ban">DELETE</button>
         </form>
           {{/if}}

@@ -128,6 +128,7 @@ router.post(
         });
         res.redirect(`/shows/${showId}/details?comment=true`);
       }
+      
       res.redirect(`/shows/${showId}/details?add=true`);
     } catch (err) {
       next(err);
@@ -213,12 +214,19 @@ router.get("/:page/top-shows", async (req, res, next) => {
 });
 
 // POST "/shows/:showId/details/delete"
-router.post("/:showId/details/delete", isLoggedIn, async (req, res, next) => {
-  const { showId } = req.params;
+router.post("/:showId/:reviewId/details/delete", isLoggedIn, async (req, res, next) => {
+  const { showId, reviewId } = req.params;
+  console.log(reviewId)
   try {
+
+    if(req.session.user.role === "admin") {
+      await Review.findOneAndDelete({_id: reviewId});
+    }
+
     await Review.findOneAndDelete({
-      $and: [{ user: req.session.user._id }, { show: showId }],
+      $and: [{ user: req.session.user._id }, { _id: reviewId }],
     });
+
     res.redirect(`/shows/${showId}/details`);
   } catch (err) {
     next(err);
