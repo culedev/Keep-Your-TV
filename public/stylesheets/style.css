@@ -180,16 +180,16 @@ h1 {
 .user-data {
   display: flex;
   flex-direction: row;
-  justify-content:space-evenly;
+  justify-content:center;
   align-items:center;
   background-color: RGB(214, 212, 212, 0.7);
-  width: 40%;
+  width: 50%;
   border-radius: 0px 15px 15px 0px;
   height: max-content;
   box-shadow: 3px 3px 10px 4px rgba(0, 0, 0, 0.2);
   padding: 20px;
   margin: 45px;
-  margin-left:15%
+  margin-left:12%
 }
 
 .show-data p {
@@ -255,7 +255,22 @@ a:active {
   align-items: center;
   margin-left: 30px;
   margin-top: 60px;
-  width: 40rem;
+  width: 60%;
+  min-width: 20% ;
+}
+
+.alert{
+  height: 60px;
+  width: 20%;
+  position:fixed
+}
+
+#toast-padre{
+  display:flex;
+  width: 100%;
+  position:absolute;
+  width: 75%;
+  justify-content: end;
 }
 
 #img-and-btn img {
