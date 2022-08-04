@@ -12,7 +12,9 @@ const express = require("express");
 // Handles the handlebars
 // https://www.npmjs.com/package/hbs
 const hbs = require("hbs");
+
 hbs.registerPartials(__dirname + "/views/partials");
+
 hbs.registerHelper("isSelected", (value, currentStatus) => {
   return value === currentStatus;
 });
@@ -83,6 +85,11 @@ hbs.registerHelper("getCarId", (arr, index, pos) => {
   }
   return `/shows/${arr[realIndex]?.id}/details`;
 });
+
+hbs.registerHelper("emojis", (str) => {
+  newStr = str.replace(/^\<p\>/,"").replace(/\<\/p\>$/,"");
+  return newStr;
+})
 
 const app = express();
 

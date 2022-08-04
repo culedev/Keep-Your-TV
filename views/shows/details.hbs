@@ -32,6 +32,10 @@
 </script>
 
    {{/if}}
+
+   <script>
+
+</script>
   <div id="img-and-btn">
     {{#if arrData.poster_path}}
     <img
@@ -146,7 +150,8 @@
         <p class="review-title">{{#if this.user.isBanned}} <s> {{this.title}} </s>{{else}} {{this.title}} {{/if}}</p>
         
   
-        <p>{{#if this.user.isBanned}} <s> {{this.review}} </s>{{else}} {{this.review}} {{/if}}</p>
+        <p>{{#if this.user.isBanned}} <s> {{#emojis this.review}}{{this}}{{/emojis}} </s>{{else}} {{#emojis this.review}}{{this}}{{/emojis}} {{/if}}</p>
+        
         {{#if (isUser this.user.username ../this.session.user.username ../this.isUserAdmin)}}
         
         {{log this}}
@@ -207,7 +212,7 @@
       <br>
       <div class="form-group">
         <label for="review">Review</label>
-        <textarea class="review-text" id="exampleFormControlTextarea1" rows="3" name="review"{{#if session.user.isBanned}}disabled{{/if}}></textarea>
+        <textarea class="review-text" id="mytextarea" rows="3" name="review"{{#if session.user.isBanned}}disabled{{/if}}></textarea>
       </div>
 
 
@@ -218,7 +223,19 @@
       {{#if session.user.isBanned}} <h4 style="color: red;">You're Banned</h4> {{/if}}
       </form>
 
-    </div>
+      </div>
     </div>
   </div>
 </div>
+
+ <script>
+   tinymce.init({
+    selector: "#mytextarea",
+    plugins: "emoticons",
+    toolbar: "emoticons",
+    toolbar_location: "bottom",
+    height: 250,
+    width: 700,
+    menubar: false,
+  });
+ </script>
