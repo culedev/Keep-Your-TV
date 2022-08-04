@@ -265,8 +265,16 @@ a:active {
   position:fixed
 }
 
-#toast-padre{
-  display:flex;
+#toast-padre-add{
+  display:none;
+  width: 100%;
+  position:absolute;
+  width: 75%;
+  justify-content: end;
+}
+
+#toast-padre-review{
+  display:none;
   width: 100%;
   position:absolute;
   width: 75%;

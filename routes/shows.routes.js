@@ -30,7 +30,7 @@ router.get("/", async (req, res, next) => {
 // GET "/shows/:apiId/details"
 router.get("/:showId/details", async (req, res, next) => {
   const { showId } = req.params;
-  const {add} = req.query
+  const {add, comment} = req.query
   try {
     const showDetails = await getDetailsShowsService(showId);
     const arrData = showDetails.data;
@@ -54,6 +54,7 @@ router.get("/:showId/details", async (req, res, next) => {
         adminUser,
         firstTrailer,
         add,
+        comment
       });
     } else {
       res.render("shows/details.hbs", {
@@ -125,6 +126,7 @@ router.post(
           review,
           user: req.session.user._id,
         });
+        res.redirect(`/shows/${showId}/details?comment=true`);
       }
       res.redirect(`/shows/${showId}/details?add=true`);
     } catch (err) {

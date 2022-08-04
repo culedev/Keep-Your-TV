@@ -1,12 +1,29 @@
 <div id="show-details">
    {{#if add}}
-   <div id="toast-padre">
+   <div id="toast-padre-add">
 <div class="alert alert-success" role="alert">
   Your list has been updated.
 </div>
 </div>
 <script>
-  const toastElement = document.getElementById("toast-padre")
+  const toastElement = document.getElementById("toast-padre-add")
+  toastElement.style.display = "flex"
+  setTimeout(()=> {
+    toastElement.style.display="none"
+  },3000)
+
+</script>
+
+   {{/if}}
+
+   {{#if comment}}
+   <div id="toast-padre-review">
+<div class="alert alert-warning" role="alert">
+  Your review has been published.
+</div>
+</div>
+<script>
+  const toastElement = document.getElementById("toast-padre-review")
   toastElement.style.display = "flex"
   setTimeout(()=> {
     toastElement.style.display="none"
