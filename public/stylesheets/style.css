@@ -180,16 +180,20 @@ h1 {
 .user-data {
   display: flex;
   flex-direction: row;
-  justify-content:center;
+  justify-content:space-between;
   align-items:center;
   background-color: RGB(214, 212, 212, 0.7);
-  width: 50%;
+  width: 40%;
   border-radius: 0px 15px 15px 0px;
   height: max-content;
   box-shadow: 3px 3px 10px 4px rgba(0, 0, 0, 0.2);
   padding: 20px;
   margin: 45px;
-  margin-left:12%
+  margin-left:15%
+}
+
+#namerole{
+  margin-left:20%
 }
 
 .show-data p {

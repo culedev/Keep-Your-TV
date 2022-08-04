@@ -12,10 +12,11 @@
             </div>
             
             <div class="user-data">
-                <div>
+                <div id="namerole">
                 <h2>{{this.username}}</h2>
                 <h5>{{this.role}} </h5>
                 </div>
+                <div id="buttons-friends">
                 {{#if this.isFriend}}
                 <form action="/profile/{{this._id}}/delete-friend" method="POST">
                     <button class="btn btn-danger" style="display: inline-block; text-align:center; width: 100px">Delete friend</button>
@@ -25,7 +26,7 @@
                     <button class="btn btn-success" style="display: inline-block; text-align:center; width: 100px">Add friend</button>
                 </form>
                 {{/if}}
-                
+                </div>
             </div>           
         </div>
         {{/each}}
