@@ -109,10 +109,10 @@
       {{#each review}}
       <div id="each-review">
         <div id="image-username">
-          <img src="{{this.user.image}}" alt="user-image" width="40"height="40" class="rounded-circle">
+          <img src="{{this.user.image}}" alt="user-image" width="40" height="40" class="rounded-circle">
           <div id="user-role">
             <p class="review-username">{{this.user.username}}</p>
-            <p class="role">{{this.user.role}}</p>
+            <p class="role">{{this.user.role}} {{#if this.user.isBanned}} <span class="role" style="color: red;">BANNED</span>{{/if}}</p>
           </div>
         
       
@@ -143,12 +143,13 @@
           </div>
         </div>
 
-        <p class="review-title">{{this.title}}</p>
+        <p class="review-title">{{#if this.user.isBanned}} <s> {{this.title}} </s>{{else}} {{this.title}} {{/if}}</p>
         
   
-        <p>{{this.review}}</p>
+        <p>{{#if this.user.isBanned}} <s> {{this.review}} </s>{{else}} {{this.review}} {{/if}}</p>
         {{#if (isUser this.user.username ../this.session.user.username ../this.isUserAdmin)}}
         
+      
         <form action="/shows/{{this.show}}/details/delete" method="POST">
           <button class="btn btn-danger delete-ban">DELETE</button>
         </form>
@@ -157,6 +158,7 @@
           <form action="/shows/{{this.show}}/{{this.user._id}}/banned" method="POST">
             <button class="btn btn-warning delete-ban">BAN USER</button>
           </form>
+
           
         {{/if}}
       </div>
@@ -213,7 +215,7 @@
       <p style="background-color: red">{{error}}</p>
       
       <button class="list-btn"{{#if session.user.isBanned}}disabled{{/if}}>Send review</button>
-      {{#if session.user.isBanned}} <h4>You're Banned</h4> {{/if}}
+      {{#if session.user.isBanned}} <h4 style="color: red;">You're Banned</h4> {{/if}}
       </form>
 
     </div>

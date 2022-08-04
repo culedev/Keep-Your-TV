@@ -265,6 +265,14 @@ a:active {
   position:fixed
 }
 
+#toast-login-suc {
+  display:none;
+  width: 100%;
+  position:absolute;
+  width: 75%;
+  justify-content: end;
+}
+
 #toast-padre-add{
   display:none;
   width: 100%;

@@ -140,16 +140,11 @@ const {userId} = req.params
 //POST "profile/:userId/delete-friend"
  router.post("/:userId/delete-friend", isLoggedIn, async (req, res, next)=> {
    const {userId} = req.params
-   console.log(userId)
-   console.log(req.session.user._id)
      try {
        const friendToDelete = await User.findById(userId)
        const userLogged = await User.findById(req.session.user._id)
       
        await User.findByIdAndUpdate(userLogged, {$pull: {friends: friendToDelete._id}},);
-        console.log(userLogged)
-        console.log(friendToDelete)
-        
  
          res.redirect("/profile/friends-list");
 
