@@ -188,8 +188,8 @@ h1 {
   height: max-content;
   box-shadow: 3px 3px 10px 4px rgba(0, 0, 0, 0.2);
   padding: 20px;
-  margin: 40px;
-  margin-left:150px
+  margin: 45px;
+  margin-left:15%
 }
 
 .show-data p {
@@ -233,6 +233,7 @@ a:active {
   border-radius: 15px;
   margin-bottom: 40px;
   flex-wrap: wrap;
+
 }
 
 #each-actor {

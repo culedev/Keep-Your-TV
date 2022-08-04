@@ -34,8 +34,7 @@ router.get("/shows-search", async (req, res, next) => {
       });
 
       if (compare.length !== 0){
-      compare[0].isFriend = true;}
-      
+      compare[0].isFriend = true;}     
     });
 
     if (showFound.data.total_results === 0) {
