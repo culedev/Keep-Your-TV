@@ -122,9 +122,10 @@ const {userId} = req.params
 
   try {
     const userAdded = await User.findById(userId)
-    const userLogged = await User.findById(req.session.user._id)
+    const userLogged = await User.findById(req.session.user._id).populate("friends")
+    console.log(userLogged)
 
-    await User.findByIdAndUpdate(userLogged._id, {$addToSet: {friends: userAdded._id}});
+    await User.findByIdAndUpdate(userLogged._id, {$addToSet: {friends: userAdded._id, isFriend:true}});
     
 
       res.redirect("/profile/friends-list");
@@ -133,6 +134,9 @@ const {userId} = req.params
     next(err)
   }
 })
+
+
+
 
 //POST "profile/:userId/delete-friend"
  router.post("/:userId/delete-friend", isLoggedIn, async (req, res, next)=> {

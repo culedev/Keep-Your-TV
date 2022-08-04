@@ -14,12 +14,14 @@ router.get("/", (req, res, next) => {
 //Search results from all the urls in the app
 router.get("/shows-search", async (req, res, next) => {
   const { search } = req.query;
+  
   if (!search) {
     res.render("shows/no-results");
   }
   try {
     const showFound = await searchShow(search);
     const showUser = await User.find({username: {$regex: search}})
+
 
 
     if (showFound.data.total_results === 0) {
