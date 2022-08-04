@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const { localsUpdate } = require("../middleware/auth");
+const { localsUpdate, isLoggedIn } = require("../middleware/auth");
 const User = require("../models/User.model");
 const { getGenreName, searchShow } = require("../services");
 
@@ -12,7 +12,7 @@ router.get("/", (req, res, next) => {
 });
 
 //Search results from all the urls in the app
-router.get("/shows-search", async (req, res, next) => {
+router.get("/shows-search", isLoggedIn, async (req, res, next) => {
   const { search } = req.query;
 
   if (!search) {

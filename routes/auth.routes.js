@@ -55,7 +55,7 @@ router.post("/signup", async (req, res, next) => {
 
     await User.create({ username, email, password: hashedPassword });
 
-    res.redirect("/auth/login");
+    res.redirect("/auth/login?login=true");
   } catch (err) {
     next(err);
   }
@@ -63,7 +63,8 @@ router.post("/signup", async (req, res, next) => {
 
 // GET "/auth/login"
 router.get("/login", (req, res, next) => {
-  res.render("auth/login.hbs");
+  const {login} = req.query
+  res.render("auth/login.hbs", {login});
 });
 
 
