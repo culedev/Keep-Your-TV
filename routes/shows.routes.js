@@ -216,7 +216,7 @@ router.get("/:page/top-shows", async (req, res, next) => {
 // POST "/shows/:showId/details/delete"
 router.post("/:showId/:reviewId/details/delete", isLoggedIn, async (req, res, next) => {
   const { showId, reviewId } = req.params;
-  console.log(reviewId)
+
   try {
 
     if(req.session.user.role === "admin") {

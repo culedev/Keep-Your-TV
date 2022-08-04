@@ -17,10 +17,10 @@
    {{/if}}
 
    {{#if comment}}
-   <div id="toast-padre-review">
-<div class="alert alert-warning" role="alert">
-  Your review has been published.
-</div>
+    <div id="toast-padre-review">
+    <div class="alert alert-warning" role="alert">
+      Your review has been published.
+    </div>
 </div>
 <script>
   const toastElement = document.getElementById("toast-padre-review")
@@ -153,8 +153,7 @@
         <p>{{#if this.user.isBanned}} <s> {{#emojis this.review}}{{this}}{{/emojis}} </s>{{else}} {{#emojis this.review}}{{this}}{{/emojis}} {{/if}}</p>
         
         {{#if (isUser this.user.username ../this.session.user.username ../this.isUserAdmin)}}
-        
-        {{log this}}
+
         <form action="/shows/{{this.show}}/{{this._id}}/details/delete" method="POST">
           <button class="btn btn-danger delete-ban">DELETE</button>
         </form>
