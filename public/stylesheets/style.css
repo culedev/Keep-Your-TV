@@ -174,13 +174,14 @@ h1 {
 }
 
 .user-data button{
-  margin-left: 40px;
+  margin-right: 30px;
+
 }
 
 .user-data {
   display: flex;
   flex-direction: row;
-  justify-content:center;
+  justify-content:space-between;
   align-items:center;
   background-color: RGB(214, 212, 212, 0.7);
   width: 50%;
@@ -189,7 +190,11 @@ h1 {
   box-shadow: 3px 3px 10px 4px rgba(0, 0, 0, 0.2);
   padding: 20px;
   margin: 45px;
-  margin-left:12%
+  margin-left:15%
+}
+
+#namerole{
+  margin-left:15%
 }
 
 .show-data p {
