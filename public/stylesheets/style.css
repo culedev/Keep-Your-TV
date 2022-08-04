@@ -318,7 +318,7 @@ a:active {
 }
 #banner{
   margin-top:20px;
-  margin-bottom: 30px;;
+  margin-bottom: 30px;
 }
 
 #other-details h2 {
@@ -433,6 +433,10 @@ a:active {
   color: white;
 }
 
+.carousel{
+  width: 100%;
+}
+
 .carousel-inner {
   padding: 40px;
   width: 100%;
@@ -507,7 +511,7 @@ a:active {
 
 #news {
   background-color: #24243e;
-  width: 1000px;
+  width: 70%;
   height: 650px;
   margin: 0 40px 40px 40px;
   font-family: Righteous;
