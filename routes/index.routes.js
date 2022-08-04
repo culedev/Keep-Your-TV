@@ -32,7 +32,10 @@ router.get("/shows-search", async (req, res, next) => {
           return eachFriend;
         }
       });
-      compare[0].isFriend = true;
+
+      if (compare.length !== 0){
+      compare[0].isFriend = true;}
+      
     });
 
     if (showFound.data.total_results === 0) {
