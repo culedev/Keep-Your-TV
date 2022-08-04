@@ -123,9 +123,8 @@ const {userId} = req.params
   try {
     const userAdded = await User.findById(userId)
     const userLogged = await User.findById(req.session.user._id).populate("friends")
-    console.log(userLogged)
 
-    await User.findByIdAndUpdate(userLogged._id, {$addToSet: {friends: userAdded._id, isFriend:true}});
+    await User.findByIdAndUpdate(userLogged._id, {$addToSet: {friends: userAdded._id}});
     
 
       res.redirect("/profile/friends-list");

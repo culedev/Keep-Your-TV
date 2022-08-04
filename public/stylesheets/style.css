@@ -227,11 +227,12 @@ a:active {
 #cast {
   display: flex;
   flex-direction: row;
+  justify-content: center;
   background-color: rgb(229, 229, 229, 0.7);
   width: fit-content;
-  padding: 20px;
   border-radius: 15px;
   margin-bottom: 40px;
+  flex-wrap: wrap;
 }
 
 #each-actor {
@@ -275,7 +276,7 @@ a:active {
   flex-direction: column;
   align-items: left;
   margin-top: 30px;
-  width: 60%;
+  width: 100%;
   text-align: left;
 }
 
@@ -292,7 +293,7 @@ a:active {
   padding: 20px;
   margin: 15px;
   border-radius: 15px;
-  width: 120%;
+  width: 80%;
 }
 #image-username {
   display: flex;
@@ -335,7 +336,7 @@ a:active {
   border-radius: 15px;
   margin-top: 25px;
   margin-bottom: 50px;
-  width: 140%;
+  width: 90%;
 }
 
 #review-title {
@@ -647,6 +648,7 @@ label.star:before {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  min-width: 65%;
 }
 
 #my-profile {

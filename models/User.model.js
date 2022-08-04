@@ -35,9 +35,6 @@ const userSchema = new Schema(
       type: Schema.Types.ObjectId,
       ref: "User",
     }],
-    isFriend: {
-      type:Boolean,
-      default: false}
   },
   {
     // this second object adds extra properties: `createdAt` and `updatedAt`

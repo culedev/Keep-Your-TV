@@ -18,7 +18,7 @@
                 </div>
                 {{#if this.isFriend}}
                 <form action="/profile/{{this._id}}/delete-friend" method="POST">
-                    <button class="btn btn-warning" style="display: inline-block; text-align:center; width: 100px">Delete friend</button>
+                    <button class="btn btn-danger" style="display: inline-block; text-align:center; width: 100px">Delete friend</button>
                 </form>
                 {{else}}
                 <form action="/profile/{{this._id}}/add-friend" method="POST">

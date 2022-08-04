@@ -1,6 +1,6 @@
 const router = require("express").Router();
 const { localsUpdate } = require("../middleware/auth");
-const User = require("../models/User.model")
+const User = require("../models/User.model");
 const { getGenreName, searchShow } = require("../services");
 
 // Continiously check if user is logged in or not
@@ -14,15 +14,26 @@ router.get("/", (req, res, next) => {
 //Search results from all the urls in the app
 router.get("/shows-search", async (req, res, next) => {
   const { search } = req.query;
-  
+
   if (!search) {
     res.render("shows/no-results");
   }
   try {
     const showFound = await searchShow(search);
-    const showUser = await User.find({username: {$regex: search}})
+    const showUser = await User.find({ username: { $regex: search } });
+    const loggedUser = await User.findById(req.session.user._id).populate(
+      "friends"
+    );
 
-
+    const loggedUserFriends = loggedUser.friends;
+    loggedUserFriends.forEach((eachFriend) => {
+      const compare = showUser.filter((eachUser) => {
+        if (eachUser._id.valueOf() == eachFriend._id.valueOf()) {
+          return eachFriend;
+        }
+      });
+      compare[0].isFriend = true;
+    });
 
     if (showFound.data.total_results === 0) {
       res.render("shows/no-results");
