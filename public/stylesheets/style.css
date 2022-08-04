@@ -174,7 +174,8 @@ h1 {
 }
 
 .user-data button{
-  margin-left: 40px;
+  margin-right: 30px;
+
 }
 
 .user-data {
@@ -183,7 +184,7 @@ h1 {
   justify-content:space-between;
   align-items:center;
   background-color: RGB(214, 212, 212, 0.7);
-  width: 40%;
+  width: 50%;
   border-radius: 0px 15px 15px 0px;
   height: max-content;
   box-shadow: 3px 3px 10px 4px rgba(0, 0, 0, 0.2);
@@ -193,7 +194,7 @@ h1 {
 }
 
 #namerole{
-  margin-left:20%
+  margin-left:15%
 }
 
 .show-data p {
