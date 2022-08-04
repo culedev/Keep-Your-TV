@@ -303,6 +303,10 @@ a:active {
   width: 100%;
   text-align: left;
 }
+#banner{
+  margin-top:20px;
+  margin-bottom: 30px;;
+}
 
 #other-details h2 {
   margin-top: 20px;
@@ -492,7 +496,7 @@ a:active {
   background-color: #24243e;
   width: 1000px;
   height: 650px;
-  margin: 40px;
+  margin: 0 40px 40px 40px;
   font-family: Righteous;
   border-radius: 10px;
   display: flex;
