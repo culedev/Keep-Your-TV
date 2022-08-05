@@ -648,6 +648,11 @@ label.star:before {
   display: flex;
   flex-direction: column;
   align-items: center;
+  border-radius: 10px;
+  width: 460px;
+  height: 500px;
+  background-color: white;
+  box-shadow: 3px 3px 3px 3px rgba(0, 0, 0, 0.15);
 }
 
 #sign-up button {
