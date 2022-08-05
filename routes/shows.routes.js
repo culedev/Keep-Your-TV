@@ -27,7 +27,7 @@ router.get("/", async (req, res, next) => {
   }
 });
 
-// GET "/shows/:apiId/details"
+// GET "/shows/:showId/details"
 router.get("/:showId/details", async (req, res, next) => {
   const { showId } = req.params;
   const {add, comment} = req.query
@@ -68,7 +68,7 @@ router.get("/:showId/details", async (req, res, next) => {
   }
 });
 
-// POST "/shows/:apId/details" tomar datos y almacenar en DB BOTON FAVORITO
+// POST "/shows/:showId/details" tomar datos y almacenar en DB BOTON FAVORITO
 router.post(
   "/:showId/details",
   isLoggedIn,
@@ -213,7 +213,7 @@ router.get("/:page/top-shows", async (req, res, next) => {
   res.render("shows/top-shows.hbs", { topShows });
 });
 
-// POST "/shows/:showId/details/delete"
+// POST "/shows/:showId/:reviewId/details/delete"
 router.post("/:showId/:reviewId/details/delete", isLoggedIn, async (req, res, next) => {
   const { showId, reviewId } = req.params;
 

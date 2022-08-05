@@ -44,7 +44,7 @@ router.get("/listbanned", isAdmin, async (req, res, next) => {
 });
 
 
-//POST "/admin/{{this._id}}/unbanned" 
+//POST "/admin/:userId/unbanned" 
 router.post("/:userId/unban", isAdmin, async (req, res, next) => {
   const {userId } = req.params;
   try {

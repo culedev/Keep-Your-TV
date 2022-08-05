@@ -3,7 +3,7 @@ const Show = require("../models/Shows.model");
 
 const { getActorDetails, getActorShows } = require("../services");
 
-// GET LIST BY GENRE "/shows/genre/:genreId"
+// GET CAST "/cast/:actorId/details"
 router.get("/:actorId/details", async (req, res, next) => {
   const { actorId } = req.params;
   try {
